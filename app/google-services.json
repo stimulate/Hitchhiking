@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "875226615693",
+    "firebase_url": "https://hitchhiking-41e99.firebaseio.com",
+    "project_id": "hitchhiking-41e99",
+    "storage_bucket": "hitchhiking-41e99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875226615693:android:de33004af88215c8",
+        "android_client_info": {
+          "package_name": "yuh.withfrds.com.hitchhiking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875226615693-t141cq7o2kd7pvobb4bvcgd31oho4imk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "yuh.withfrds.com.hitchhiking",
+            "certificate_hash": "9638eb70b60a499f2ae87370e0ad3fdc8710de89"
+          }
+        },
+        {
+          "client_id": "875226615693-cro0e093cidpo6hndnm6uopmubmc9947.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "875226615693-cro0e093cidpo6hndnm6uopmubmc9947.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeX-hg2trCcpUs-rS2gq_dz7LGGO7_B6A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875226615693-cro0e093cidpo6hndnm6uopmubmc9947.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
