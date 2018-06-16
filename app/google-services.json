@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "875226615693-iq6sgpk56aoh96ue3mhkj0s1f9irmmrt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "yuh.withfrds.com.hitchhiking",
+            "certificate_hash": "bfdc18a2c0ed2ba0c84e59a71af8d62b6f503963"
+          }
+        },
+        {
           "client_id": "875226615693-t141cq7o2kd7pvobb4bvcgd31oho4imk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
