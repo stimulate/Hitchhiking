@@ -45,11 +45,15 @@ public class OfferActivity extends AppCompatActivity {
             }
         });
 
+        // the fire storage codes starts here
 
-//        FirebaseApp.initializeApp(this);
+//        FirebaseApp.initializeApp(this); // this is not required
+
+        // please remember connect firebase firstly
+        // get instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
+        // get the mas which storage key and values
         Map<String, Object> offer = new HashMap<>();
         String uid = "123"; //we should get this id from auth
 
@@ -57,6 +61,8 @@ public class OfferActivity extends AppCompatActivity {
         offer.put("from", "auckland");
         offer.put("to", "hamilton");
 
+
+        // add ducument
         db.collection("Offers")
                 .add(offer)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
