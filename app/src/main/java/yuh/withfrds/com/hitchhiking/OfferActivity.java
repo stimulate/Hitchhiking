@@ -1,11 +1,24 @@
 package yuh.withfrds.com.hitchhiking;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class OfferActivity extends AppCompatActivity {
 
@@ -17,6 +30,13 @@ public class OfferActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+
+
+
+
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,6 +44,35 @@ public class OfferActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+//        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        Map<String, Object> offer = new HashMap<>();
+        String uid = "123"; //we should get this id from auth
+
+        offer.put("uid", uid );
+        offer.put("from", "auckland");
+        offer.put("to", "hamilton");
+
+        db.collection("Offers")
+                .add(offer)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("Success", "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Error", "Error adding document", e);
+                    }
+                }
+            );
+
     }
 
 }
