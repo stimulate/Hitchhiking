@@ -13,6 +13,11 @@
     tools:context=".LoginActivity">
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hitchhiking_logo" />
 
 
     <!-- Login progress -->
@@ -23,12 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/hitchhiking_logo" />
 
     <ScrollView
         android:id="@+id/login_form"
