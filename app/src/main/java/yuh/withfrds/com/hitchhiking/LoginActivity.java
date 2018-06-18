@@ -247,7 +247,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private void startNextActivity() {
         Intent intent = new Intent(this, OfferActivity.class);
         startActivity(intent);
-//        finish();
+        finish();
     }
 
     private void signIn(String email, String password) {
