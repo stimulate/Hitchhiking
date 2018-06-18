@@ -12,11 +12,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity">
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/hitchhiking_logo" />
+
 
     <!-- Login progress -->
     <ProgressBar
