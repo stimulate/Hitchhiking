@@ -15,4 +15,5 @@
         completions."
     </string>
     <string name="title_activity_offer">OfferActivity</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
