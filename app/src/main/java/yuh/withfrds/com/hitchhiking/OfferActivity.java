@@ -1,5 +1,6 @@
 package yuh.withfrds.com.hitchhiking;
 
+import android.app.Activity;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,7 +21,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OfferActivity extends AppCompatActivity {
+public class OfferActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

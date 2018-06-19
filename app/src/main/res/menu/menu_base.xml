@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_main"
-        android:icon="@android:drawable/ic_btn_speak_now"
-        android:title="Get Film Information"/>
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Dashboard"/>
     <item
-        android:id="@+id/action_other"
-        android:icon="@android:drawable/ic_btn_speak_now"
+        android:id="@+id/action_map"
+        android:icon="@android:drawable/ic_menu_compass"
         android:title="Navigate On Map"/>
     <item
-        android:id="@+id/action_noHamburger"
-        android:icon="@android:drawable/ic_btn_speak_now"
-        android:title="Precise Location"/>
+        android:id="@+id/action_offer"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="View Offer"/>
 
 </menu>

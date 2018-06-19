@@ -114,11 +114,11 @@ public class BaseActivity extends AppCompatActivity implements
                             startActivity(new Intent(this, DashboardActivity.class));
                             return true;
 
-                        case R.id.action_other:
+                        case R.id.action_map:
                             startActivity(new Intent(this, MapsActivity.class));
                             return true;
 
-                        case R.id.action_noHamburger :
+                        case R.id.action_offer :
                             startActivity(new Intent(this, OfferActivity.class));
                             return true;
 
