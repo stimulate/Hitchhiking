@@ -109,9 +109,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             mEmailView.setText(currentUser.getEmail());
+            startNextActivity();
         }
         // [END initialize_auth]
     }
+
+
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
