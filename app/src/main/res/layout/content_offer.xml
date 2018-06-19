@@ -84,7 +84,7 @@
                     android:layout_width="264dp"
                     android:layout_height="150dp"
                     android:ems="10"
-                    android:text="pass address" />
+                    android:text="split with ," />
 
             </TableRow>
 
