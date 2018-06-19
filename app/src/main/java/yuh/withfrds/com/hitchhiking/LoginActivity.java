@@ -115,6 +115,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // [END initialize_auth]
     }
 
+
+
+
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
