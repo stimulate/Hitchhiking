@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_main"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:title="Get Film Information"/>
+    <item
+        android:id="@+id/action_other"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:title="Navigate On Map"/>
+    <item
+        android:id="@+id/action_noHamburger"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:title="Precise Location"/>
+
+</menu>

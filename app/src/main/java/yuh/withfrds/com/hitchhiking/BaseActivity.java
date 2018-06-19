@@ -1,5 +1,6 @@
 package yuh.withfrds.com.hitchhiking;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
@@ -65,21 +66,21 @@ public class BaseActivity extends AppCompatActivity implements
     }
 
     protected void setUpNavView() {
-        //        navigationView.setNavigationItemSelectedListener(this);
-        //
-        //        if( useDrawerToggle()) { // use the hamburger menu
-        //            drawerToggle = new ActionBarDrawerToggle(this, fullLayout, toolbar,
-        //                    R.string.nav_drawer_opened,
-        //                    R.string.nav_drawer_closed);
-        //
-        //            fullLayout.setDrawerListener(drawerToggle);
-        //            drawerToggle.syncState();
-        //        } else if(useToolbar() && getSupportActionBar() != null) {
-        //            // Use home/back button instead
-        //            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //            getSupportActionBar().setHomeAsUpIndicator(getResources()
-        //                    .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
-        //        }
+                navigationView.setNavigationItemSelectedListener(this);
+
+                if( useDrawerToggle()) { // use the hamburger menu
+                    drawerToggle = new ActionBarDrawerToggle(this, fullLayout, toolbar,
+                            R.string.nav_drawer_opened,
+                            R.string.nav_drawer_closed);
+
+                    fullLayout.setDrawerListener(drawerToggle);
+                    drawerToggle.syncState();
+                } else if(useToolbar() && getSupportActionBar() != null) {
+                    // Use home/back button instead
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setHomeAsUpIndicator(getResources()
+                            .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
+                }
     }
 
     /**
@@ -100,30 +101,32 @@ public class BaseActivity extends AppCompatActivity implements
 
         return onOptionsItemSelected(menuItem);
     }
-    //   @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        switch (id) {
-//                        case R.id.action_main:
-//                            startActivity(new Intent(this, MainActivity.class));
-//                            return true;
-//
-//                        case R.id.action_other:
-//                            startActivity(new Intent(this, MapsActivity.class));
-//                            return true;
-//
-//                        case R.id.action_noHamburger :
-//                            startActivity(new Intent(this, GetLocation.class));
-//                            return true;
-//
-//                    }
-//
-//                   return super.onOptionsItemSelected(item);
-//        }
-//    }
+       @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        switch (id) {
+                        case R.id.action_main:
+                            startActivity(new Intent(this, DashboardActivity.class));
+                            return true;
+
+                        case R.id.action_other:
+                            startActivity(new Intent(this, MapsActivity.class));
+                            return true;
+
+                        case R.id.action_noHamburger :
+                            startActivity(new Intent(this, OfferActivity.class));
+                            return true;
+
+                    }
+
+                   return super.onOptionsItemSelected(item);
+    }
+
 }
+
+
