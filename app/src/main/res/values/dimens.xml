@@ -3,8 +3,4 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <string name="title_activity_base">BaseActivity</string>
-    <string name ="action_settings">Settings</string>
-    <string name="nav_drawer_opened">drawer opened</string>
-    <string name="nav_drawer_closed">drawer closed</string>
 </resources>

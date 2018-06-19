@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 /**
  * Created by a_yu_ on 2018/5/26.
  */
@@ -110,23 +113,36 @@ public class BaseActivity extends AppCompatActivity implements
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-                        case R.id.action_main:
-                            startActivity(new Intent(this, DashboardActivity.class));
-                            return true;
+            case R.id.action_main:
+                startActivity(new Intent(this, DashboardActivity.class));
+                return true;
 
-                        case R.id.action_map:
-                            startActivity(new Intent(this, MapsActivity.class));
-                            return true;
+            case R.id.action_map:
+                startActivity(new Intent(this, MapsActivity.class));
+                return true;
 
-                        case R.id.action_offer :
-                            startActivity(new Intent(this, OfferActivity.class));
-                            return true;
+            case R.id.action_offer :
+                startActivity(new Intent(this, OfferActivity.class));
+                return true;
 
-                    }
+            case R.id.action_search :
+                startActivity(new Intent(this, SearchActivity.class));
+                return true;
 
-                   return super.onOptionsItemSelected(item);
+            case R.id.action_sign_out :
+                doSignOut();
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
+    private void doSignOut() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            mAuth.signOut();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+    }
 }
-
-
