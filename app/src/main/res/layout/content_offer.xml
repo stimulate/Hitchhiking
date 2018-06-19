@@ -10,6 +10,7 @@
 
 
     <LinearLayout
+        android:id="@+id/offer_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -84,7 +85,7 @@
                     android:layout_width="264dp"
                     android:layout_height="150dp"
                     android:ems="10"
-                    android:text="pass address" />
+                    android:text="split with ," />
 
             </TableRow>
 
@@ -95,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
+            android:onClick="offer"
             android:text="POST" />
 
     </LinearLayout>
