@@ -31,10 +31,10 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonPost"
+            android:id="@+id/buttonOffer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Post" />
+            android:text="Offer" />
 
         <Space
             android:layout_width="150dp"
