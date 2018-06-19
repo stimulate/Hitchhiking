@@ -45,12 +45,9 @@ public class BaseActivity extends AppCompatActivity implements
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         navigationView = (NavigationView) findViewById(R.id.navigationView);
 
-        if (useToolbar())
-        {
+        if (useToolbar()) {
             setSupportActionBar(toolbar);
-        }
-        else
-        {
+        } else {
             toolbar.setVisibility(View.GONE);
         }
 
@@ -60,39 +57,38 @@ public class BaseActivity extends AppCompatActivity implements
     /**
      * Helper method that can be used by child classes to
      * specify that they don't want a {@link Toolbar}
+     *
      * @return true
      */
-    protected boolean useToolbar()
-    {
+    protected boolean useToolbar() {
         return true;
     }
 
-    protected void setUpNavView()
-    {
-        navigationView.setNavigationItemSelectedListener(this);
-
-        if( useDrawerToggle()) { // use the hamburger menu
-            drawerToggle = new ActionBarDrawerToggle(this, fullLayout, toolbar,
-                    R.string.nav_drawer_opened,
-                    R.string.nav_drawer_closed);
-
-            fullLayout.setDrawerListener(drawerToggle);
-            drawerToggle.syncState();
-        } else if(useToolbar() && getSupportActionBar() != null) {
-            // Use home/back button instead
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(getResources()
-                    .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
-        }
+    protected void setUpNavView() {
+        //        navigationView.setNavigationItemSelectedListener(this);
+        //
+        //        if( useDrawerToggle()) { // use the hamburger menu
+        //            drawerToggle = new ActionBarDrawerToggle(this, fullLayout, toolbar,
+        //                    R.string.nav_drawer_opened,
+        //                    R.string.nav_drawer_closed);
+        //
+        //            fullLayout.setDrawerListener(drawerToggle);
+        //            drawerToggle.syncState();
+        //        } else if(useToolbar() && getSupportActionBar() != null) {
+        //            // Use home/back button instead
+        //            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //            getSupportActionBar().setHomeAsUpIndicator(getResources()
+        //                    .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
+        //        }
     }
 
     /**
      * Helper method to allow child classes to opt-out of having the
      * hamburger menu.
+     *
      * @return
      */
-    protected boolean useDrawerToggle()
-    {
+    protected boolean useDrawerToggle() {
         return true;
     }
 
@@ -104,31 +100,30 @@ public class BaseActivity extends AppCompatActivity implements
 
         return onOptionsItemSelected(menuItem);
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        switch (id)
-        {
-            case R.id.action_main:
-                startActivity(new Intent(this, MainActivity.class));
-                return true;
-
-            case R.id.action_other:
-                startActivity(new Intent(this, MapsActivity.class));
-                return true;
-
-            case R.id.action_noHamburger :
-                startActivity(new Intent(this, GetLocation.class));
-                return true;
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+    //   @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        switch (id) {
+//                        case R.id.action_main:
+//                            startActivity(new Intent(this, MainActivity.class));
+//                            return true;
+//
+//                        case R.id.action_other:
+//                            startActivity(new Intent(this, MapsActivity.class));
+//                            return true;
+//
+//                        case R.id.action_noHamburger :
+//                            startActivity(new Intent(this, GetLocation.class));
+//                            return true;
+//
+//                    }
+//
+//                   return super.onOptionsItemSelected(item);
+//        }
+//    }
 }
