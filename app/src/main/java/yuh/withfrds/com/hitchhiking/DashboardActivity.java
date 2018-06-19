@@ -3,14 +3,14 @@ package yuh.withfrds.com.hitchhiking;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
+
 import android.view.View;
 import android.widget.Button;
-=======
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
->>>>>>> upstream/master
+
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -38,8 +38,7 @@ public class DashboardActivity extends AppCompatActivity {
 //        finish();
     }
 
-<<<<<<< HEAD
-=======
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -63,6 +62,6 @@ public class DashboardActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
->>>>>>> upstream/master
+
 
 }
