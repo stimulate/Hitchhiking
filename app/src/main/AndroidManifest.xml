@@ -39,6 +39,16 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
         </activity>
+
+        <activity
+            android:name=".DashboardActivity"
+            android:label="@string/title_activity_dashboard">
+        </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search">
+        </activity>
+
     </application>
 
 </manifest>
