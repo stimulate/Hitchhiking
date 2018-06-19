@@ -63,85 +63,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Please wait...");
-        pDialog.setCancelable(false);
-
-        Button btn =(Button)findViewById(R.id.btn_show);
-        txt_data = (TextView)findViewById(R.id.txt_data);
-        btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // making json array request
-                makeJsonRequest();
-            }
-        });
-    }
-    private void makeJsonRequest() {
-
-        showpDialog();
-
-        JsonArrayRequest req = new JsonArrayRequest(URL_JSON,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-
-                        try {
-                            // Parsing json array response
-                            // loop through each json object
-                            jsonResponse = "";
-                            for (int i = 0; i < response.length(); i++) {
-
-                                JSONObject person = (JSONObject) response
-                                        .get(i);
-
-                                String title = person.getString("title");
-                                String director = person.getString("director");
-                                String description = person.getString("description");
-
-                                jsonResponse += "Title: " + title + "\n\n";
-                                jsonResponse += "Director: " + director + "\n\n";
-                                jsonResponse += "Description: " + description + "\n\n";
-
-
-                            }
-
-                            txt_data.setText(jsonResponse);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(),
-                                    "Error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-
-                        hidepDialog();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-                hidepDialog();
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req);
     }
 
-    private void showpDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
 
-    private void hidepDialog() {
-        if (pDialog.isShowing())
-            pDialog.dismiss();
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
