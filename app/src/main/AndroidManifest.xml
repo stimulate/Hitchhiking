@@ -44,6 +44,10 @@
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard">
         </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search">
+        </activity>
 
     </application>
 
