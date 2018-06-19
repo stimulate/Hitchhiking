@@ -16,7 +16,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".OfferActivity"
-            android:label="@string/title_activity_offer">
+            android:label="@string/title_activity_offer"
+            android:parentActivityName=".DashboardActivity"
+
+            >
 
         </activity>
         <activity
@@ -37,16 +40,19 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".DashboardActivity">
         </activity>
 
         <activity
             android:name=".DashboardActivity"
-            android:label="@string/title_activity_dashboard">
+            android:label="@string/title_activity_dashboard"
+            >
         </activity>
         <activity
             android:name=".SearchActivity"
-            android:label="@string/title_activity_search">
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".DashboardActivity">
         </activity>
 
     </application>
