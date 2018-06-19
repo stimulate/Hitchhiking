@@ -16,9 +16,6 @@ public class DashboardActivity extends Activity {
         // ref: https://www.dev2qa.com/android-listview-example/
         // ref: https://alvinalexander.com/source-code/android/android-listactivity-and-listview-example
 
-
-
-
         Button offerButton = findViewById(R.id.buttonOffer);
         offerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,7 +24,6 @@ public class DashboardActivity extends Activity {
             }
         });
     }
-
 
     private void startOfferActivity() {
         Intent intent = new Intent(this, OfferActivity.class);
