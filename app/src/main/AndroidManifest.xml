@@ -47,16 +47,13 @@
             android:label="@string/title_activity_search" />
         <activity
             android:name=".Maps_Activity"
-<<<<<<< HEAD
-            android:label="@string/title_activity_maps">
 
-        </activity>
+            android:label="@string/title_activity_maps_"></activity>
         <activity
             android:name=".RequestActivity"
             android:label="@string/title_activity_request"></activity>
-=======
-            android:label="@string/title_activity_maps_"></activity>
->>>>>>> upstream/sidemenu_update
+
+
         <activity
             android:name=".OfferActivity"
             android:label="@string/title_activity_offer"

@@ -44,13 +44,13 @@ android {
 dependencies {
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-storage:16.0.1'
     implementation 'com.google.firebase:firebase-firestore:17.0.1'
-    implementation 'com.google.firebase:firebase-auth:16.0.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.google.firebase:firebase-auth:16.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
     implementation 'com.google.android.gms:play-services-location:15.0.1'
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
