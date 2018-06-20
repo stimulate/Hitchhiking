@@ -1,51 +1,30 @@
 package yuh.withfrds.com.hitchhiking;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.LocationListener;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.Settings;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -56,31 +35,28 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
-
-public class MapsActivity extends BaseActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,
+public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         GoogleMap.OnMarkerDragListener,
         GoogleMap.OnMapLongClickListener,
         GoogleMap.OnMarkerClickListener,
         View.OnClickListener {
-    private static final String TAG = "MapsActivity";
+    private static final String TAG = "Maps_Activity";
     private GoogleMap mMap;
-    double longitude,latitude;
+    LocationManager locationManager;
+    double longitude, latitude;
     private GoogleApiClient googleApiClient;
     int zoomLevel = 12;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.maps);
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
         //Initializing googleApiClient
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -90,25 +66,25 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Goo
 
         Button btn = findViewById(R.id.btn);
         final FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
-       btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               try {
-                   Task<Location> location = client.getLastLocation();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Task<Location> location = client.getLastLocation();
 
-                   location.addOnCompleteListener(new OnCompleteListener<Location>() {
-                       @Override
-                       public void onComplete(@NonNull Task<Location> task) {
+                    location.addOnCompleteListener(new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Location> task) {
 
-                           moveMap();
-                           System.err.println(task.getResult().getLatitude());
-                       }
-                   });
-               } catch (SecurityException ex) {
-                   ex.printStackTrace();
-               }
-           }
-       });
+                            moveMap();
+                            System.err.println(task.getResult().getLatitude());
+                        }
+                    });
+                } catch (SecurityException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     /**
@@ -120,6 +96,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Goo
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -134,6 +111,12 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Goo
         googleMap.addMarker(new MarkerOptions()
                 .position(Unitec)
                 .title("Unitec"));
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+
+            return;
+        }
         googleMap.setMyLocationEnabled(true);
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(Unitec));
@@ -142,17 +125,35 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Goo
         googleMap.setOnMapLongClickListener(this);
         mMap = googleMap;
     }
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case 101: {
+                // If request is cancelled, the result arrays are empty.
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                        && (ActivityCompat.checkSelfPermission(Maps_Activity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        || ActivityCompat.checkSelfPermission(Maps_Activity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
+                    locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER,1000*60,2, (LocationListener) this);
+
+                    Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+                }
+            }
+        }
+    }
+
     //Getting current location
+    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void getCurrentLocation() {
         mMap.clear();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+
             return;
         }
         Location location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
@@ -212,12 +213,12 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Goo
 
     @Override
     public void onMarkerDragStart(Marker marker) {
-        Toast.makeText(MapsActivity.this, "onMarkerDragStart", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Maps_Activity.this, "onMarkerDragStart", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onMarkerDrag(Marker marker) {
-        Toast.makeText(MapsActivity.this, "onMarkerDrag", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Maps_Activity.this, "onMarkerDrag", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -245,9 +246,8 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,Goo
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Toast.makeText(MapsActivity.this, "onMarkerClick", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Maps_Activity.this, "onMarkerClick", Toast.LENGTH_SHORT).show();
         return true;
     }
+
 }
-
-

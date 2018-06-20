@@ -1,6 +1,5 @@
 package yuh.withfrds.com.hitchhiking;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
@@ -115,7 +114,7 @@ public class BaseActivity extends AppCompatActivity implements
                             return true;
 
                         case R.id.action_map:
-                            startActivity(new Intent(this, MapsActivity.class));
+                            startActivity(new Intent(this, Maps_Activity.class));
                             return true;
 
                         case R.id.action_offer :

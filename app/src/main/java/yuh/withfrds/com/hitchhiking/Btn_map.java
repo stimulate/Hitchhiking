@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -29,7 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * create an instance of this fragment.
  */
 public class Btn_map extends Fragment {
-    MapsActivity ma = new MapsActivity();
+    Maps_Activity ma = new Maps_Activity();
 
     private static final Pair<String,String> Loc = new Pair("Latitude","Longitude");
 
