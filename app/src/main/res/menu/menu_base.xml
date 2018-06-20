@@ -19,4 +19,9 @@
             android:title="Logout" />
     </group>
 
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Search Offer"/>
+
 </menu>

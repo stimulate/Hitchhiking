@@ -5,6 +5,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_out">Sign out</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -20,4 +21,8 @@
     <string name="title_activity_search">Search</string>
     <string name="resume">Where am I</string>
     <string name="title_map">Contact Us</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name ="action_settings">Settings</string>
+    <string name="nav_drawer_opened">drawer opened</string>
+    <string name="nav_drawer_closed">drawer closed</string>
 </resources>
