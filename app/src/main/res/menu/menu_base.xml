@@ -12,12 +12,6 @@
         android:id="@+id/action_offer"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="View Offer"/>
-    <group >
-        <item
-            android:id="@+id/action_logout"
-            android:icon="@android:drawable/ic_menu_info_details"
-            android:title="Logout" />
-    </group>
 
     <item
         android:id="@+id/action_search"
