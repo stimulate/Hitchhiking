@@ -1,60 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="yuh.withfrds.com.hitchhiking">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".RequestActivity">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.location.gps" />
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="top|left"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+            <TextView
+                android:id="@+id/labelStartAddress2"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:text="From"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:visibility="visible" />
 
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name"
-            android:theme="@style/LaunchTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <EditText
+                android:id="@+id/textStartAddress2"
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="start address" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        </TableRow>
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <activity
-            android:name=".DashboardActivity"
-            android:label="@string/title_activity_dashboard" />
-        <activity
-            android:name=".SearchActivity"
-            android:label="@string/title_activity_search" />
-        <activity
-            android:name=".Maps_Activity"
-            android:label="@string/title_activity_maps_"></activity>
-        <activity
-            android:name=".RequestActivity"
-            android:label="@string/title_activity_request"></activity>
-        <activity
-            android:name=".OfferActivity"
-            android:label="@string/title_activity_offer"
-            android:parentActivityName=".DashboardActivity" />
-    </application>
+            <TextView
+                android:id="@+id/labelEndAddress2"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:text="To"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:visibility="visible" />
 
-</manifest>
+            <EditText
+                android:id="@+id/textDestAddress2"
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="destination address" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/buttonRequest"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Request" />
+
+</LinearLayout>
