@@ -5,6 +5,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_out">Sign out</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -14,9 +15,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_offer">Offer</string>
-    <string name="title_activity_maps">Map</string>
+
     <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_offer">Offer</string>
+    <string name="title_activity_request">Request</string>
+    <string name="title_activity_maps">Map</string>
     <string name="title_activity_search">Search</string>
     <string name="resume">Where am I</string>
     <string name="title_map">Contact Us</string>

@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".OfferActivity"
-    tools:showIn="@layout/activity_offer">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".RequestActivity">
 
-
-    <LinearLayout
-        android:id="@+id/offer_content"
+    <TableLayout
+        android:id="@+id/tableLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:gravity="top|left"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-        <TableLayout
-            android:id="@+id/tableLayout"
+        <TableRow
             android:layout_width="match_parent"
+<<<<<<< HEAD:app/src/main/res/layout/content_offer.xml
             android:layout_height="453dp"
             android:layout_weight="1"
             android:gravity="top|start"
@@ -79,26 +85,54 @@
                     android:text="Pass"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:visibility="visible" />
+=======
+            android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/textPassAddress"
-                    android:layout_width="264dp"
-                    android:layout_height="150dp"
-                    android:ems="10"
-                    android:text="split with ," />
+            <TextView
+                android:id="@+id/labelStartAddress2"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:text="From"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:visibility="visible" />
 
-            </TableRow>
+            <EditText
+                android:id="@+id/textStartAddress2"
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="start address" />
 
-        </TableLayout>
+        </TableRow>
 
-        <Button
-            android:id="@+id/buttonPost"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_weight="1"
-            android:onClick="offer"
-            android:text="POST" />
+            android:layout_height="match_parent">
+>>>>>>> master:app/src/main/res/layout/activity_request.xml
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/labelEndAddress2"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:text="To"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:visibility="visible" />
 
-</android.support.constraint.ConstraintLayout>
+            <EditText
+                android:id="@+id/textDestAddress2"
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="destination address" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/buttonRequest"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Request" />
+
+</LinearLayout>

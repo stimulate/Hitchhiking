@@ -4,8 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="Header"
+    android:text="@string/app_name"
     android:padding="30dp"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimaryDark"
     android:textColor="@android:color/white"/>
 
