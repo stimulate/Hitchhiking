@@ -121,8 +121,12 @@ public class BaseActivity extends AppCompatActivity implements
                 startActivity(new Intent(this, MapsActivity.class));
                 return true;
 
-            case R.id.action_offer :
+            case R.id.action_post_offer :
                 startActivity(new Intent(this, OfferActivity.class));
+                return true;
+
+            case R.id.action_request :
+                startActivity(new Intent(this, RequestActivity.class));
                 return true;
 
             case R.id.action_search :

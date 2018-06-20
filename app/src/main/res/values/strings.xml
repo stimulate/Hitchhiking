@@ -15,14 +15,16 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_offer">Offer</string>
-    <string name="title_activity_maps">Map</string>
+
     <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_offer">Offer</string>
+    <string name="title_activity_request">Request</string>
+    <string name="title_activity_maps">Map</string>
     <string name="title_activity_search">Search</string>
     <string name="resume">Where am I</string>
     <string name="title_map">Contact Us</string>
     <string name="title_activity_base">BaseActivity</string>
-    <string name ="action_settings">Settings</string>
+    <string name="action_settings">Settings</string>
     <string name="nav_drawer_opened">drawer opened</string>
     <string name="nav_drawer_closed">drawer closed</string>
 </resources>

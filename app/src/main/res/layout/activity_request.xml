@@ -10,10 +10,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".OfferActivity">
+    tools:context=".RequestActivity">
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/tableLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/labelStartAddress"
+                android:id="@+id/labelStartAddress2"
                 android:layout_width="86dp"
                 android:layout_height="wrap_content"
                 android:text="From"
@@ -34,7 +34,7 @@
                 android:visibility="visible" />
 
             <EditText
-                android:id="@+id/textStartAddress"
+                android:id="@+id/textStartAddress2"
                 android:layout_width="264dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -47,7 +47,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/labelEndAddress"
+                android:id="@+id/labelEndAddress2"
                 android:layout_width="86dp"
                 android:layout_height="wrap_content"
                 android:text="To"
@@ -55,7 +55,7 @@
                 android:visibility="visible" />
 
             <EditText
-                android:id="@+id/textDestAddress"
+                android:id="@+id/textDestAddress2"
                 android:layout_width="264dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -63,34 +63,12 @@
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/labelPassAddress"
-                android:layout_width="86dp"
-                android:layout_height="wrap_content"
-                android:text="Pass"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:visibility="visible" />
-
-            <EditText
-                android:id="@+id/textPassAddress"
-                android:layout_width="264dp"
-                android:layout_height="150dp"
-                android:ems="10"
-                android:text="split with ," />
-
-        </TableRow>
-
     </TableLayout>
 
     <Button
-        android:id="@+id/buttonPost"
+        android:id="@+id/buttonRequest"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:onClick="offer"
-        android:text="POST" />
+        android:text="Request" />
 
 </LinearLayout>

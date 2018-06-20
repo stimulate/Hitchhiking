@@ -105,18 +105,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             mEmailView.setText(currentUser.getEmail());
             startNextActivity();
         }
-        // [END initialize_auth]
     }
-
-
-
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {

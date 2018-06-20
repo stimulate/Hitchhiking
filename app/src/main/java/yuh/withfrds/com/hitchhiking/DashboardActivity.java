@@ -32,14 +32,24 @@ public class DashboardActivity extends BaseActivity {
                 startOfferActivity();
             }
         });
+        Button requestButton = findViewById(R.id.buttonRequest);
+        requestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startRequestActivity();
+            }
+        });
     }
 
     private void startOfferActivity() {
         Intent intent = new Intent(this, OfferActivity.class);
         startActivity(intent);
-//        finish();
     }
 
+    private void startRequestActivity() {
+        Intent intent = new Intent(this, RequestActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

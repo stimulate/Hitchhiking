@@ -9,10 +9,13 @@
         android:icon="@android:drawable/ic_menu_compass"
         android:title="Navigate On Map"/>
     <item
-        android:id="@+id/action_offer"
+        android:id="@+id/action_post_offer"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:title="View Offer"/>
-
+        android:title="Post Offer"/>
+    <item
+        android:id="@+id/action_request"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="Request"/>
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
