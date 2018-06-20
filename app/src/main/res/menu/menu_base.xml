@@ -3,22 +3,22 @@
     <item
         android:id="@+id/action_main"
         android:icon="@android:drawable/ic_menu_manage"
-        android:title="Dashboard"/>
+        android:title="@string/title_activity_dashboard"/>
     <item
         android:id="@+id/action_map"
         android:icon="@android:drawable/ic_menu_compass"
-        android:title="Navigate On Map"/>
+        android:title="@string/title_activity_maps"/>
     <item
         android:id="@+id/action_post_offer"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:title="Post Offer"/>
+        android:title="@string/title_activity_offer"/>
     <item
         android:id="@+id/action_request"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="Request"/>
+        android:title="@string/title_activity_request"/>
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="Search Offer"/>
+        android:title="@string/title_activity_search"/>
 
 </menu>
