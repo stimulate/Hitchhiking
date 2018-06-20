@@ -1,6 +1,5 @@
 package yuh.withfrds.com.hitchhiking;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
@@ -123,9 +122,8 @@ public class BaseActivity extends AppCompatActivity implements
                         case R.id.action_offer :
                             startActivity(new Intent(this, OfferActivity.class));
                             return true;
-                        case R.id.logout :
+                        case R.id.action_logout:
 //                            startActivity(new Intent(this, OfferActivity.class));
-
                             FirebaseAuth.getInstance().signOut();
                             startActivity(new Intent(this, LoginActivity.class));
                             // log out here
