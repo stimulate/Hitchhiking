@@ -12,5 +12,9 @@
         android:id="@+id/action_offer"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="View Offer"/>
+    <item
+        android:id="@+id/logout"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Logout"/>
 
 </menu>

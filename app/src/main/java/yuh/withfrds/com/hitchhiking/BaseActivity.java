@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 /**
  * Created by a_yu_ on 2018/5/26.
  */
@@ -120,6 +122,13 @@ public class BaseActivity extends AppCompatActivity implements
 
                         case R.id.action_offer :
                             startActivity(new Intent(this, OfferActivity.class));
+                            return true;
+                        case R.id.logout :
+//                            startActivity(new Intent(this, OfferActivity.class));
+
+                            FirebaseAuth.getInstance().signOut();
+                            startActivity(new Intent(this, LoginActivity.class));
+                            // log out here
                             return true;
 
                     }
