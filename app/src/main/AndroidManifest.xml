@@ -47,7 +47,9 @@
             android:label="@string/title_activity_search" />
         <activity
             android:name=".Maps_Activity"
-            android:label="@string/title_activity_maps_"></activity>
+            android:label="@string/title_activity_maps">
+
+        </activity>
         <activity
             android:name=".RequestActivity"
             android:label="@string/title_activity_request"></activity>
