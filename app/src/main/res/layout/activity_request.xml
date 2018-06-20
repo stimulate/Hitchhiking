@@ -23,69 +23,6 @@
 
         <TableRow
             android:layout_width="match_parent"
-<<<<<<< HEAD:app/src/main/res/layout/content_offer.xml
-            android:layout_height="453dp"
-            android:layout_weight="1"
-            android:gravity="top|start"
-            android:orientation="vertical"
-            android:visibility="visible"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/labelStartAddress"
-                    android:layout_width="86dp"
-                    android:layout_height="wrap_content"
-                    android:text="From"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:visibility="visible" />
-
-                <EditText
-                    android:id="@+id/textStartAddress"
-                    android:layout_width="264dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:text="start address" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/labelEndAddress"
-                    android:layout_width="86dp"
-                    android:layout_height="wrap_content"
-                    android:text="To"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:visibility="visible" />
-
-                <EditText
-                    android:id="@+id/textDestAddress"
-                    android:layout_width="264dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:text="destination address" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/labelPassAddress"
-                    android:layout_width="86dp"
-                    android:layout_height="wrap_content"
-                    android:text="Pass"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:visibility="visible" />
-=======
             android:layout_height="match_parent">
 
             <TextView
@@ -108,7 +45,6 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
->>>>>>> master:app/src/main/res/layout/activity_request.xml
 
             <TextView
                 android:id="@+id/labelEndAddress2"
