@@ -127,16 +127,6 @@ public class BaseActivity extends AppCompatActivity implements
                 return true;
 
 
-                        case R.id.action_offer :
-                            startActivity(new Intent(this, OfferActivity.class));
-                            return true;
-                        case R.id.action_logout:
-//                            startActivity(new Intent(this, OfferActivity.class));
-                            FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(this, LoginActivity.class));
-                            // log out here
-                            return true;
-
             case R.id.action_search :
                 startActivity(new Intent(this, SearchActivity.class));
                 return true;
