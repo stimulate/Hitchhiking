@@ -3,7 +3,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -20,4 +20,33 @@
     <string name="title_activity_search">Search</string>
     <string name="resume">Where am I</string>
     <string name="title_map">Contact Us</string>
+
+    <!-- Info page -->
+    <string name="info_firname">First Name</string>
+    <string name="info_lastname">Last Name</string>
+    <string name="info_job">Occupation</string>
+    <string name="info_age">Age Group</string>
+    <string name="info_address">Address</string>
+    <string name="info_city">City</string>
+    <string name="info_state">State</string>
+    <string name="info_no">Cellphone Number</string>
+    <string name="info_gender">Gender</string>
+    <string name="info_female">Female</string>
+    <string name="info_male">Male</string>
+    <string name="info_role">Role</string>
+    <string name="info_avatar">Avatar</string>
+    <string name="info_driver">Driver</string>
+    <string name="info_hiker">Hiker</string>
+    <string name="info_plate">Plate Number</string>
+    <string name="info_profile">Profile</string>
+    <string name="info_submit">Submit</string>
+    <string-array name="age_group">
+        <item>below 20</item>
+        <item>20 to 35</item>
+        <item>35 to 50</item>
+        <item>50 to 65</item>
+        <item>65 and above</item>
+    </string-array>
+    <string name="title_activity_maps_">Map</string>
+
 </resources>

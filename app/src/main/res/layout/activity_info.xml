@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="132dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/info_profile"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/info_name1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="@string/info_firname"
+            app:layout_constraintBaseline_toBaselineOf="@+id/info_name0"
+            app:layout_constraintEnd_toStartOf="@+id/info_name0" />
+
+        <EditText
+            android:id="@+id/info_name0"
+            android:layout_width="108dp"
+            android:layout_height="28dp"
+            android:layout_marginBottom="118dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="118dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
+            app:layout_constraintEnd_toEndOf="@+id/info_driver"
+            app:layout_constraintStart_toStartOf="@+id/textView12"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="11dp"
+            android:text="@string/info_lastname"
+            app:layout_constraintBottom_toTopOf="@+id/info_name0"
+            app:layout_constraintEnd_toStartOf="@+id/info_name1" />
+
+        <EditText
+            android:id="@+id/info_name1"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintEnd_toEndOf="@+id/info_name0"
+            app:layout_constraintStart_toStartOf="@+id/info_name0"
+            app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/info_job"
+            app:layout_constraintBottom_toBottomOf="@+id/info_hiker"
+            app:layout_constraintEnd_toEndOf="@+id/textView21"
+            app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+        <EditText
+            android:id="@+id/info_job"
+            android:layout_width="111dp"
+            android:layout_height="22dp"
+            android:layout_marginBottom="117dp"
+            android:layout_marginEnd="38dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="116dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/info_address"
+            app:layout_constraintEnd_toEndOf="@+id/info_no"
+            app:layout_constraintStart_toStartOf="@+id/textView20"
+            app:layout_constraintTop_toTopOf="@+id/info_name1" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/info_address"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/info_address" />
+
+        <EditText
+            android:id="@+id/info_address"
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_marginBottom="38dp"
+            android:layout_marginTop="39dp"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            app:layout_constraintBottom_toBottomOf="@+id/info_city"
+            app:layout_constraintEnd_toEndOf="@+id/info_driver"
+            app:layout_constraintStart_toStartOf="@+id/info_city"
+            app:layout_constraintTop_toTopOf="@+id/textView20" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="@string/info_city"
+            app:layout_constraintEnd_toEndOf="@+id/textView18"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+        <EditText
+            android:id="@+id/info_city"
+            android:layout_width="82dp"
+            android:layout_height="29dp"
+            android:layout_marginBottom="55dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="55dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/age"
+            app:layout_constraintEnd_toEndOf="@+id/info_plate"
+            app:layout_constraintStart_toStartOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/info_hiker" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="@string/info_state"
+            app:layout_constraintBaseline_toBaselineOf="@+id/info_state"
+            app:layout_constraintEnd_toStartOf="@+id/info_plate" />
+
+        <EditText
+            android:id="@+id/info_state"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="34dp"
+            android:layout_marginTop="29dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="@+id/textView22"
+            app:layout_constraintEnd_toEndOf="@+id/info_city"
+            app:layout_constraintStart_toStartOf="@+id/info_city"
+            app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="118dp"
+            android:text="@string/info_gender"
+            app:layout_constraintBottom_toTopOf="@+id/info_hiker"
+            app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/textView19"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView19"
+            app:layout_constraintTop_toTopOf="@+id/textView19">
+
+            <RadioButton
+                android:id="@+id/info_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/info_female" />
+
+            <RadioButton
+                android:id="@+id/info_male"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/info_male" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/info_role"
+            app:layout_constraintBottom_toTopOf="@+id/textView16"
+            app:layout_constraintEnd_toEndOf="@+id/textView16" />
+
+        <CheckBox
+            android:id="@+id/info_driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="56dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/info_driver"
+            app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <CheckBox
+            android:id="@+id/info_hiker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/info_hiker"
+            app:layout_constraintBottom_toBottomOf="@+id/textView20"
+            app:layout_constraintStart_toEndOf="@+id/textView20" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="49dp"
+            android:text="@string/info_no"
+            app:layout_constraintBottom_toTopOf="@+id/textView15"
+            app:layout_constraintEnd_toStartOf="@+id/info_no"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/info_no"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="33dp"
+            android:layout_marginEnd="61dp"
+            android:layout_marginTop="35dp"
+            android:ems="10"
+            android:inputType="phone"
+            app:layout_constraintBottom_toBottomOf="@+id/info_job"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintTop_toTopOf="@+id/info_name0" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/info_age"
+            app:layout_constraintBottom_toTopOf="@+id/textView23"
+            app:layout_constraintEnd_toStartOf="@+id/textView18"
+            app:layout_constraintStart_toStartOf="@+id/textView18" />
+
+        <Spinner
+            android:id="@+id/age"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/info_plate"
+            app:layout_constraintEnd_toEndOf="@+id/info_state"
+            app:layout_constraintStart_toStartOf="@+id/info_plate"
+            app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="67dp"
+            android:layout_marginEnd="65dp"
+            android:text="@string/info_plate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/button" />
+
+        <EditText
+            android:id="@+id/info_plate"
+            android:layout_width="114dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="70dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="70dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView23"
+            app:layout_constraintTop_toTopOf="@+id/info_state" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="77dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/info_submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
