@@ -68,7 +68,7 @@
     <Button
         android:id="@+id/buttonRequest"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:text="Request" />
 
 </LinearLayout>
