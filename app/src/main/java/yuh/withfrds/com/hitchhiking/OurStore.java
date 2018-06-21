@@ -12,6 +12,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -28,24 +31,7 @@ public class OurStore {
 
 
 
-    /*
 
-    get fields and id of user
-
-     */
-    private static String getUserId(){
-
-        String uid ="";
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            uid = user.getUid();
-
-        }else{
-            Log.d("Error", "Not logined");
-        }
-        return uid;
-    }
 
     private static String[] splitPasses(String pass){
 
@@ -137,6 +123,31 @@ public class OurStore {
 
     }
 
+
+    /*
+
+    get fields and id of user
+
+     */
+    public static String getUserId(){
+
+        String uid ="";
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uid = user.getUid();
+
+        }else{
+            Log.d("Error", "Not logined");
+        }
+        return uid;
+    }
+
+    public static FirebaseFirestore getDB(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        return db;
+    }
+
     /*
     Set user profile
      */
@@ -197,7 +208,9 @@ public class OurStore {
     get user's all offers and requests
      */
 
-    public  static getAll()
+    public  static QuerySnapshot getAll(){
+        return null;
+    }
 
 
 }
