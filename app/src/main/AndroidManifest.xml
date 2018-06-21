@@ -57,6 +57,11 @@
             android:name=".OfferActivity"
             android:label="@string/title_activity_offer"
             android:parentActivityName=".DashboardActivity" />
+
+        <activity android:name=".InfoActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".DashboardActivity" />
+
     </application>
 
 </manifest>
