@@ -19,7 +19,7 @@
         android:text="Filter" />
 
     <ListView
-        android:id="@+id/listViewInfo"
+        android:id="@+id/dashboard_list"
         android:layout_width="match_parent"
         android:layout_height="447dp"
         tools:layout_editor_absoluteX="8dp"
