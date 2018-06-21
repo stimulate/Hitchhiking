@@ -13,7 +13,7 @@ This is very basic hitchhiking sharing application.
 - [how to get fire store getup](https://cloud.google.com/firestore/docs/quickstart)
 
 ### advantages of firestore than real time db
-- [not a really query but a retrieving data](https://firebase.google.com/docs/database/admin/retrieve-data)
+- [rt db does not have a really query but a retrieving data](https://firebase.google.com/docs/database/admin/retrieve-data)
 
 ### disadvatages of firestore
 - [cannot query array](https://firebase.google.com/docs/firestore/solutions/arrays)
