@@ -25,31 +25,10 @@ public class DashboardActivity extends BaseActivity {
         // ref: https://www.dev2qa.com/android-listview-example/
         // ref: https://alvinalexander.com/source-code/android/android-listactivity-and-listview-example
 
-        Button offerButton = findViewById(R.id.buttonOffer);
-        offerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startOfferActivity();
-            }
-        });
-        Button requestButton = findViewById(R.id.buttonRequest);
-        requestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startRequestActivity();
-            }
-        });
+
     }
 
-    private void startOfferActivity() {
-        Intent intent = new Intent(this, OfferActivity.class);
-        startActivity(intent);
-    }
 
-    private void startRequestActivity() {
-        Intent intent = new Intent(this, RequestActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -25,28 +25,6 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/buttonOffer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Offer" />
-
-        <Space
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/buttonRequest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Request" />
-
-    </LinearLayout>
 
     </LinearLayout>
