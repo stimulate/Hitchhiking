@@ -81,9 +81,9 @@ public class OurStore {
         ourMap.put("timeTo", timeEnd);
         ourMap.put("seats", seats);
 
-        if (pass!=""){
+        if (pass!="" && collectionName!="Requests"){
             // it is an offer
-            // we should put a list
+            // we should put a sub object
             String[] passes = splitPasses(pass);
 
             // use object here, because array cannot be queried in firestore
@@ -95,8 +95,6 @@ public class OurStore {
             }
 
             ourMap.put("pass", passMap);
-        }else{
-            ourMap.put("pass", new HashMap<>());
         }
 
 
