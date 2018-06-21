@@ -264,6 +264,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         finish();
     }
 
+    private void authFailer(){
+        // for auth failing information
+        // created by Tim
+
+        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                Toast.LENGTH_SHORT).show();
+        showProgress(false);
+        Log.d("Error", "login failed ");
+
+        // restart this activity
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
     private void signIn(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -275,12 +290,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             startNextActivity();
                         } else {
                             // If sign in fails, display a message to the user.
-//                            startNextActivity();
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            Log.d("Error", "login failed ");
-
-
+                            authFailer();
                         }
                     }
                 });
@@ -297,10 +307,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             startNextActivity();
                         } else {
                             // If sign in fails, display a message to the user.
-//                            startNextActivity();
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            Log.d("Error", "login failed ");
+
+                            authFailer();
                         }
                     }
                 });
