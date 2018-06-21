@@ -22,6 +22,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +32,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -66,6 +68,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -105,12 +110,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+        // these lines of code are checking that whether there is a user logined
+        // added by Tim
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-//            mEmailView.setText(currentUser.getEmail());
             startNextActivity();
         }
+
     }
 
     private void populateAutoComplete() {
@@ -249,7 +256,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void startNextActivity() {
         Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
-        finish();
+//        finish();
     }
 
     private void signIn(String email, String password) {
@@ -262,7 +269,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             startNextActivity();
                         } else {
                             // If sign in fails, display a message to the user.
-                            startNextActivity();
+//                            startNextActivity();
+
+                            Log.d("Error", "login failed ");
+
+
                         }
                     }
                 });
@@ -278,7 +289,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             startNextActivity();
                         } else {
                             // If sign in fails, display a message to the user.
-                            startNextActivity();
+//                            startNextActivity();
+                            Log.d("Error", "login failed ");
                         }
                     }
                 });
