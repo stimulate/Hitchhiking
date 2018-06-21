@@ -12,6 +12,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -28,24 +31,7 @@ public class OurStore {
 
 
 
-    /*
 
-    get fields and id of user
-
-     */
-    private static String getUserId(){
-
-        String uid ="";
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            uid = user.getUid();
-
-        }else{
-            Log.d("Error", "Not logined");
-        }
-        return uid;
-    }
 
     private static String[] splitPasses(String pass){
 
@@ -81,9 +67,9 @@ public class OurStore {
         ourMap.put("timeTo", timeEnd);
         ourMap.put("seats", seats);
 
-        if (pass!=""){
+        if (pass!="" && collectionName!="Requests"){
             // it is an offer
-            // we should put a list
+            // we should put a sub object
             String[] passes = splitPasses(pass);
 
             // use object here, because array cannot be queried in firestore
@@ -95,8 +81,6 @@ public class OurStore {
             }
 
             ourMap.put("pass", passMap);
-        }else{
-            ourMap.put("pass", new HashMap<>());
         }
 
 
@@ -139,6 +123,31 @@ public class OurStore {
 
     }
 
+
+    /*
+
+    get fields and id of user
+
+     */
+    public static String getUserId(){
+
+        String uid ="";
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uid = user.getUid();
+
+        }else{
+            Log.d("Error", "Not logined");
+        }
+        return uid;
+    }
+
+    public static FirebaseFirestore getDB(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        return db;
+    }
+
     /*
     Set user profile
      */
@@ -169,12 +178,13 @@ public class OurStore {
     Post an offer to db
      */
 
-    public static void postAnOffer(FirebaseFirestore db,
+    public static void postAnOffer(
                                    String start, String dest,
                                    String pass,
                                    Date timeStart, Date timeEnd,
                                    int seats)
     {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         submitADocument(db, "Offers", start,dest,pass, timeStart, timeEnd, seats);
     }
 
@@ -182,14 +192,24 @@ public class OurStore {
     Post an request to db
      */
 
-    public static void postAnRequest(FirebaseFirestore db,
+    public static void postAnRequest(
                                      String start, String dest,
 
                                      Date timeStart, Date timeEnd,
                                      int seats){
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         String pass ="";
         submitADocument(db, "Requests", start,dest,pass, timeStart, timeEnd, seats);
+    }
+
+
+    /*
+    get user's all offers and requests
+     */
+
+    public  static QuerySnapshot getAll(){
+        return null;
     }
 
 

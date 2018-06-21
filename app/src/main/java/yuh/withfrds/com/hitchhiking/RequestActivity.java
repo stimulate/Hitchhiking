@@ -88,7 +88,7 @@ public class RequestActivity extends BaseActivity {
         }catch (Exception e){
             Log.e("Error", "postOffer: " +e +"");
         }
-        OurStore.postAnRequest(db, startPlace, destination, timeStart, timeEnd, seats);
+        OurStore.postAnRequest(startPlace, destination, timeStart, timeEnd, seats);
 
         getBackToDashboard();
 

@@ -113,7 +113,7 @@ public class OfferActivity extends BaseActivity {
         }catch (Exception e){
             Log.e("Error", "postOffer: " +e +"");
         }
-        OurStore.postAnOffer(db, startPlace, destination, passPlaces, timeStart, timeEnd, seats);
+        OurStore.postAnOffer(startPlace, destination, passPlaces, timeStart, timeEnd, seats);
 
         getBackToDashboard();
     }
