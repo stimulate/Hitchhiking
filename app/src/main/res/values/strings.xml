@@ -58,4 +58,9 @@
     <string name="nav_drawer_closed">drawer closed</string>
     <string name="title_activity_maps_">Map</string>
 
+
+    <string name="from">From</string>
+    <string name="destination">To</string>
+    <string name="pass">Split with ,</string>
+
 </resources>
