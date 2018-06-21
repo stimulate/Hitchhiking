@@ -1,10 +1,8 @@
 package yuh.withfrds.com.hitchhiking;
 
 
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,23 +17,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OurStore {
     /*
 This is an encapsulation class for fire store
 
-如果后续时间充足，应该封装firestore 存储到这个类里，
-
-好处是
-
-- 代码质量上会有加分
-- 维护也更容易
-
-
-
-如果时间不够，删除这个类
-
-
+created by Tim
  */
+
+
+public class OurStore {
 
 
 
@@ -53,17 +42,21 @@ This is an encapsulation class for fire store
             uid = user.getUid();
 
         }else{
-            Log.d("Error", "Firebase Auth error");
+            Log.d("Error", "Not logined");
         }
         return uid;
     }
 
+    private static String[] splitPasses(String pass){
+
+        // remove all white spaces
+        pass = pass.replaceAll("\\s","");
+
+        return pass.split(",");
+    }
 
 
-
-
-
-    public static void submitADocument(
+    private static void submitADocument(
             FirebaseFirestore db,
             String collectionName ,
             String start, String dest,
@@ -75,17 +68,36 @@ This is an encapsulation class for fire store
 
         String uid = getUserId(); //we should get this id from auth
 
-        String startPlace = start;
-        String destination = dest;
-        String passPlaces = pass;
+
 
 
         // get the mas which storage key and values
         final Map<String, Object> ourMap = new HashMap<>();
 
         ourMap.put("uid", uid);
-        ourMap.put("from", startPlace);
-        ourMap.put("to", destination);
+        ourMap.put("from", start);
+        ourMap.put("to", dest);
+        ourMap.put("timeFrom", timeStart);
+        ourMap.put("timeTo", timeEnd);
+        ourMap.put("seats", seats);
+
+        if (pass!=""){
+            // it is an offer
+            // we should put a list
+            String[] passes = splitPasses(pass);
+
+            // use object here, because array cannot be queried in firestore
+            Map<String, Object> passMap = new HashMap<>();
+
+            for (String p:passes
+                 ) {
+                passMap.put(p, true);
+            }
+
+            ourMap.put("pass", passMap);
+        }else{
+            ourMap.put("pass", new HashMap<>());
+        }
 
 
         final DocumentReference theUser= db.collection("Users").document(uid);
@@ -107,10 +119,8 @@ This is an encapsulation class for fire store
                         Map<String, Object> userData = new HashMap<>();
 
                         Map<String, Object> nestedData = new HashMap<>();
-                        // get more user profile from auth
-                        nestedData.put("userName", "username");
 
-                        userData.put("Info", nestedData);
+                        userData.put("Profile", nestedData);
 
                         theUser.set(
                                 userData
@@ -129,6 +139,35 @@ This is an encapsulation class for fire store
 
     }
 
+    /*
+    Set user profile
+     */
+
+
+    public static void setUserProfile(Map<String, Object> userMap){
+        // set user profile
+
+    }
+
+
+    /*
+    get user profile, return a map
+
+     */
+    public static Map<String, Object> getUserProfileMap(){
+        // get user profile
+
+        Map<String, Object> nestedData = new HashMap<>();
+
+
+        return nestedData;
+
+    }
+
+    /*
+
+    Post an offer to db
+     */
 
     public static void postAnOffer(FirebaseFirestore db,
                                    String start, String dest,
@@ -138,6 +177,10 @@ This is an encapsulation class for fire store
     {
         submitADocument(db, "Offers", start,dest,pass, timeStart, timeEnd, seats);
     }
+
+    /*
+    Post an request to db
+     */
 
     public static void postAnRequest(FirebaseFirestore db,
                                      String start, String dest,
