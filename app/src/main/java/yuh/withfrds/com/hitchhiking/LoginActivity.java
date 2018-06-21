@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            mEmailView.setText(currentUser.getEmail());
+//            mEmailView.setText(currentUser.getEmail());
             startNextActivity();
         }
     }
