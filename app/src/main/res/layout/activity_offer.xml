@@ -26,6 +26,48 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/labelDepartureStart"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:text="Departure"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/editTextDepartureStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="datetime" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/labelDepartureEnd"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:text="Range"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/editTextDepartureEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="datetime" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
                 android:id="@+id/labelStartAddress"
                 android:layout_width="86dp"
                 android:layout_height="wrap_content"
@@ -59,7 +101,7 @@
                 android:layout_width="264dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:text="destination address" />
+                android:text="destination" />
 
         </TableRow>
 
@@ -78,9 +120,32 @@
             <EditText
                 android:id="@+id/textPassAddress"
                 android:layout_width="264dp"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
                 android:ems="10"
                 android:text="split with ," />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/labelSeats"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:text="Seats"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/textSeats"
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:text="2"
+                android:visibility="visible" />
 
         </TableRow>
 
@@ -89,7 +154,7 @@
     <Button
         android:id="@+id/buttonPost"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:onClick="offer"
         android:text="POST" />
 
