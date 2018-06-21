@@ -68,12 +68,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // these lines of code are checking that whether there is a user logined
-        // added by Tim
+        // init firebase auth
         mAuth = FirebaseAuth.getInstance();
-
-
-
 
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
@@ -119,6 +115,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     public void onStart(){
         super.onStart();
+        // check firebase auth statues
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             startNextActivity();
