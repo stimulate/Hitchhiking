@@ -23,3 +23,15 @@ This is very basic hitchhiking sharing application.
 
 ## Errors Tracking
 - [java.lang.IllegalStateException: This Activity already has an action bar supplied by the window decor](https://stackoverflow.com/questions/26515058/this-activity-already-has-an-action-bar-supplied-by-the-window-decor)
+
+
+# Document
+## About OurStore
+
+this is an encapsulation class for interacting with fire store.
+
+there are 4 public functions for now
+- postAnOffer
+- postAnRequest
+- setUserProfile (not yet)
+- getUserProfileMap (not yet)
