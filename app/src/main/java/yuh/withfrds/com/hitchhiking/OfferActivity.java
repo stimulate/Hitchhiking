@@ -1,6 +1,7 @@
 package yuh.withfrds.com.hitchhiking;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +22,6 @@ public class OfferActivity extends BaseActivity {
     tim
     github.com/tim-hub
      */
-
     public static String TIMEFORMAT = "HH:mm dd/MM/yyyy";
 
     private FirebaseFirestore db;
@@ -55,7 +55,7 @@ public class OfferActivity extends BaseActivity {
         offerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                offer();
+                postOffer();
             }
         });
 
@@ -78,27 +78,23 @@ public class OfferActivity extends BaseActivity {
         textStart = (EditText) findViewById(R.id.textStartAddress);
         textDest = (EditText) findViewById(R.id.textDestAddress);
         textPass = (EditText) findViewById(R.id.textPassAddress);
-        textTimeStart = (EditText) findViewById(R.id.editTextDepartureStart);
-        textTimeEnd = findViewById(R.id.editTextDepartureEnd);
+        textTimeStart = (EditText) findViewById(R.id.requestTimeDeparture);
+        textTimeEnd = findViewById(R.id.requestTimeRangeTo);
         textSeats = findViewById(R.id.textSeats);
 
 
     }
 
+    private void getBackToDashboard(){
 
-    /*
-
-    get fields and id of user
-
-     */
-
-
-    public void offer(View view){
-        offer();
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
-    private void offer(){
+
+    private void postOffer(){
 
         String startPlace = textStart.getText().toString();
         String destination = textDest.getText().toString();
@@ -115,12 +111,18 @@ public class OfferActivity extends BaseActivity {
             timeEnd = new SimpleDateFormat(TIMEFORMAT).parse(textTimeEnd.getText().toString());
 
         }catch (Exception e){
-            Log.e("Error", "offer: " +e +"");
+            Log.e("Error", "postOffer: " +e +"");
         }
         OurStore.postAnOffer(db, startPlace, destination, passPlaces, timeStart, timeEnd, seats);
 
+        getBackToDashboard();
+    }
 
-
+    /*
+    get fields and id of user
+     */
+    public void postOffer(View view){
+        postOffer();
     }
 
 }

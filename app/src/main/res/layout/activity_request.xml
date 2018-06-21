@@ -34,7 +34,7 @@
                 android:visibility="visible" />
 
             <EditText
-                android:id="@+id/editTextDepartureStart"
+                android:id="@+id/requestTimeDeparture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -50,17 +50,17 @@
                 android:id="@+id/labelDepartureEnd"
                 android:layout_width="133dp"
                 android:layout_height="wrap_content"
-                android:text="Range"
-                android:textAlignment="textEnd"
+                android:text="Range to"
+                android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:visibility="visible" />
 
             <EditText
-                android:id="@+id/editTextDepartureEnd"
+                android:id="@+id/requestTimeRange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="datetime" />
         </TableRow>
 
         <TableRow
@@ -118,7 +118,7 @@
                 android:visibility="visible" />
 
             <EditText
-                android:id="@+id/textNumberPeople"
+                android:id="@+id/requestSeats"
                 android:layout_width="264dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -134,6 +134,7 @@
         android:id="@+id/buttonRequest"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:onClick="postRequest"
         android:text="Request" />
 
 </LinearLayout>

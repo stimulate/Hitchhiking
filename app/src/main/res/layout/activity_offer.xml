@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textDestAddress" />
 
     <EditText
-        android:id="@+id/editTextDepartureStart"
+        android:id="@+id/requestTimeDeparture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -57,12 +57,12 @@
         android:ems="10"
         android:hint="@string/time_start"
         android:inputType="datetime"
-        app:layout_constraintEnd_toStartOf="@+id/editTextDepartureEnd"
+        app:layout_constraintEnd_toStartOf="@+id/requestTimeRangeTo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSeats" />
 
     <EditText
-        android:id="@+id/editTextDepartureEnd"
+        android:id="@+id/requestTimeRange"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -72,7 +72,7 @@
         android:inputType="datetime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.818"
-        app:layout_constraintStart_toEndOf="@+id/editTextDepartureStart"
+        app:layout_constraintStart_toEndOf="@+id/requestTimeDeparture"
         app:layout_constraintTop_toBottomOf="@+id/textSeats" />
 
 
@@ -102,13 +102,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="offer"
+        android:onClick="postOffer"
         android:text="POST"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDepartureEnd"
+        app:layout_constraintTop_toBottomOf="@+id/requestTimeRangeTo"
         app:layout_constraintVertical_bias="0.088" />
 
 </android.support.constraint.ConstraintLayout>

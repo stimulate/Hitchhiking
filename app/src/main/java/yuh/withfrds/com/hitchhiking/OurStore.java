@@ -81,10 +81,11 @@ This is an encapsulation class for fire store
 
 
         // get the mas which storage key and values
-        final Map<String, Object> offer = new HashMap<>();
+        final Map<String, Object> ourMap = new HashMap<>();
 
-        offer.put("from", startPlace);
-        offer.put("to", destination);
+        ourMap.put("uid", uid);
+        ourMap.put("from", startPlace);
+        ourMap.put("to", destination);
 
 
         final DocumentReference theUser= db.collection("Users").document(uid);
@@ -98,7 +99,7 @@ This is an encapsulation class for fire store
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        offersCollection.add(offer);
+                        offersCollection.add(ourMap);
 
                     } else {
                         Log.d("State", "No such document, the document will be created");
@@ -115,9 +116,9 @@ This is an encapsulation class for fire store
                                 userData
                         );
 
-                        // store the offer data
+                        // store the postOffer data
 
-                        offersCollection.add(offer);
+                        offersCollection.add(ourMap);
 
                     }
                 } else {
@@ -140,9 +141,11 @@ This is an encapsulation class for fire store
 
     public static void postAnRequest(FirebaseFirestore db,
                                      String start, String dest,
-                                     String pass,
+
                                      Date timeStart, Date timeEnd,
                                      int seats){
+
+        String pass ="";
         submitADocument(db, "Requests", start,dest,pass, timeStart, timeEnd, seats);
     }
 
