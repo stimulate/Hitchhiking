@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="datetime" />
+                android:inputType="number" />
         </TableRow>
 
         <TableRow
@@ -76,7 +76,7 @@
                 android:visibility="visible" />
 
             <EditText
-                android:id="@+id/textStartAddress"
+                android:id="@+id/requestStartAddress"
                 android:layout_width="264dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -97,7 +97,7 @@
                 android:visibility="visible" />
 
             <EditText
-                android:id="@+id/textDestAddress"
+                android:id="@+id/requestDestAddress"
                 android:layout_width="264dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
