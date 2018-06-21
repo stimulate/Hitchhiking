@@ -68,6 +68,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // these lines of code are checking that whether there is a user logined
+        // added by Tim
+        mAuth = FirebaseAuth.getInstance();
+
 
 
 
@@ -110,14 +114,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        // these lines of code are checking that whether there is a user logined
-        // added by Tim
-        mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             startNextActivity();
         }
-
     }
 
     private void populateAutoComplete() {
@@ -256,7 +261,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void startNextActivity() {
         Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
-//        finish();
+        finish();
     }
 
     private void signIn(String email, String password) {
@@ -266,11 +271,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success
+                            FirebaseUser user = mAuth.getCurrentUser();
                             startNextActivity();
                         } else {
                             // If sign in fails, display a message to the user.
 //                            startNextActivity();
-
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                             Log.d("Error", "login failed ");
 
 
@@ -286,10 +293,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
                             startNextActivity();
                         } else {
                             // If sign in fails, display a message to the user.
 //                            startNextActivity();
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                             Log.d("Error", "login failed ");
                         }
                     }
