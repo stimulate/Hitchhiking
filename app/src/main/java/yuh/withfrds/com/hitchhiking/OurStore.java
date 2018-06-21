@@ -89,7 +89,7 @@ This is an encapsulation class for fire store
 
         final DocumentReference theUser= db.collection("Users").document(uid);
 
-        final CollectionReference offersCollection= theUser.collection(collectionName);
+        final CollectionReference offersCollection= db.collection(collectionName);
 
 
         theUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
