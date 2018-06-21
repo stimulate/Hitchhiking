@@ -18,4 +18,8 @@ package yuh.withfrds.com.hitchhiking;
  */
 
 public class OurStore {
+
+
+
+
 }

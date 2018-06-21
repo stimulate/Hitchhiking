@@ -48,12 +48,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDestAddress" />
 
+    <EditText
+        android:id="@+id/editTextDepartureStart"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/time_start"
+        android:inputType="datetime"
+        app:layout_constraintEnd_toStartOf="@+id/editTextDepartureEnd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSeats" />
+
+    <EditText
+        android:id="@+id/editTextDepartureEnd"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/time_end"
+        android:inputType="datetime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintStart_toEndOf="@+id/editTextDepartureStart"
+        app:layout_constraintTop_toBottomOf="@+id/textSeats" />
+
+
+    <EditText
+        android:id="@+id/textSeats"
+        android:layout_width="264dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/seats"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPassAddress" />
+
 
     <Button
         android:id="@+id/buttonPost"
         android:layout_width="match_parent"
+
         android:layout_height="63dp"
         android:layout_marginBottom="8dp"
+
         android:onClick="offer"
         android:text="POST"
         app:layout_constraintBottom_toBottomOf="parent" />
