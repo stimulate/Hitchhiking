@@ -167,12 +167,13 @@ public class OurStore {
     Post an offer to db
      */
 
-    public static void postAnOffer(FirebaseFirestore db,
+    public static void postAnOffer(
                                    String start, String dest,
                                    String pass,
                                    Date timeStart, Date timeEnd,
                                    int seats)
     {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         submitADocument(db, "Offers", start,dest,pass, timeStart, timeEnd, seats);
     }
 
@@ -180,15 +181,23 @@ public class OurStore {
     Post an request to db
      */
 
-    public static void postAnRequest(FirebaseFirestore db,
+    public static void postAnRequest(
                                      String start, String dest,
 
                                      Date timeStart, Date timeEnd,
                                      int seats){
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         String pass ="";
         submitADocument(db, "Requests", start,dest,pass, timeStart, timeEnd, seats);
     }
+
+
+    /*
+    get user's all offers and requests
+     */
+
+    public  static getAll()
 
 
 }
