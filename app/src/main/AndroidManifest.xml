@@ -52,14 +52,17 @@
             android:name=".InfoActivity"
             android:label="@string/title_activity_settings"></activity>
 
+
         <activity
             android:name=".RequestActivity"
             android:label="@string/title_activity_request"></activity>
+
+
         <activity
             android:name=".OfferActivity"
             android:label="@string/title_activity_offer"
             android:parentActivityName=".DashboardActivity" />
-
+        
     </application>
 
 </manifest>

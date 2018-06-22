@@ -1,96 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".OfferActivity">
+    android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="top|left"
-        android:orientation="vertical"
-        android:visibility="visible">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/textStartAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/from"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/labelStartAddress"
-                android:layout_width="86dp"
-                android:layout_height="wrap_content"
-                android:text="From"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:visibility="visible" />
 
-            <EditText
-                android:id="@+id/textStartAddress"
-                android:layout_width="264dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:text="start address" />
+    <EditText
+        android:id="@+id/textDestAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/destination"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textStartAddress" />
 
-        </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/textPassAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/pass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDestAddress" />
 
-            <TextView
-                android:id="@+id/labelEndAddress"
-                android:layout_width="86dp"
-                android:layout_height="wrap_content"
-                android:text="To"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:visibility="visible" />
+    <EditText
+        android:id="@+id/requestTimeDeparture"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/time_start"
+        android:inputType="datetime"
+        app:layout_constraintEnd_toStartOf="@+id/requestTimeRangeTo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSeats" />
 
-            <EditText
-                android:id="@+id/textDestAddress"
-                android:layout_width="264dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:text="destination address" />
+    <EditText
+        android:id="@+id/requestTimeRange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/time_end"
+        android:inputType="datetime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintStart_toEndOf="@+id/requestTimeDeparture"
+        app:layout_constraintTop_toBottomOf="@+id/textSeats" />
 
-        </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/textSeats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/seats"
+        android:inputType="number"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPassAddress" />
 
-            <TextView
-                android:id="@+id/labelPassAddress"
-                android:layout_width="86dp"
-                android:layout_height="wrap_content"
-                android:text="Pass"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:visibility="visible" />
-
-            <EditText
-                android:id="@+id/textPassAddress"
-                android:layout_width="264dp"
-                android:layout_height="150dp"
-                android:ems="10"
-                android:text="split with ," />
-
-        </TableRow>
-
-    </TableLayout>
 
     <Button
         android:id="@+id/buttonPost"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:onClick="offer"
-        android:text="POST" />
+        android:layout_width="280dp"
 
-</LinearLayout>
+        android:layout_height="53dp"
+        android:layout_marginBottom="8dp"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="postOffer"
+        android:text="POST"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requestTimeRange" />
+
+</android.support.constraint.ConstraintLayout>
