@@ -78,7 +78,7 @@ public class RequestActivity extends BaseActivity {
 
         int seats = Integer.parseInt(textSeats.getText().toString());
 
-        GeoPoint userLocation = new GeoPoint(OurLocation.location.getLatitude(), OurLocation.location.getAltitude());
+        GeoPoint userLocation = new GeoPoint(OurLocation.location.getLatitude(), OurLocation.location.getLongitude());
 
         Date timeStart = new Date();
         Date timeEnd = new Date();
