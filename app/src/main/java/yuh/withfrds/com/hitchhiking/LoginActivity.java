@@ -127,6 +127,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     OurLocation.MY_PERMISSION_ACCESS_COURSE_LOCATION );
         }
 
+        //init location
+        OurLocation.initLocation(this);
+
         // check firebase auth statues
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
