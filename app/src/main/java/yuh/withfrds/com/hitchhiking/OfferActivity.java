@@ -90,8 +90,8 @@ public class OfferActivity extends BaseActivity {
         textStart = (EditText) findViewById(R.id.textStartAddress);
         textDest = (EditText) findViewById(R.id.textDestAddress);
         textPass = (EditText) findViewById(R.id.textPassAddress);
-        textTimeStart = (EditText) findViewById(R.id.requestTimeDeparture);
-        textTimeEnd = findViewById(R.id.requestTimeRangeTo);
+        textTimeStart = (EditText) findViewById(R.id.offerTimeDeparture);
+        textTimeEnd = findViewById(R.id.offerTimeRangeTo);
         textSeats = findViewById(R.id.textSeats);
 
 

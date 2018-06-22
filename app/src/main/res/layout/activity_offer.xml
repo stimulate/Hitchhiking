@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textSeats" />
 
     <EditText
-        android:id="@+id/offerTimeRange"
+        android:id="@+id/offerTimeRangeTo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
