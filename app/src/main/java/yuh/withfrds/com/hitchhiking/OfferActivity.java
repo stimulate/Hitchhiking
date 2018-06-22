@@ -115,7 +115,7 @@ public class OfferActivity extends BaseActivity {
         String destination = textDest.getText().toString();
         String passPlaces = textPass.getText().toString();
 
-        GeoPoint userLocation = new GeoPoint(OurLocation.location.getLatitude(), OurLocation.location.getAltitude());
+        GeoPoint userLocation = new GeoPoint(OurLocation.location.getLatitude(), OurLocation.location.getLongitude());
 
         int seats = Integer.parseInt(textSeats.getText().toString());
 
