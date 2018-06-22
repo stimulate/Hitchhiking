@@ -12,6 +12,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -44,6 +45,7 @@ public class OurStore {
 
     private static void submitADocument(
             FirebaseFirestore db,
+            GeoPoint location,
             String collectionName ,
             String start, String dest,
             String pass,
@@ -60,12 +62,15 @@ public class OurStore {
         // get the mas which storage key and values
         final Map<String, Object> ourMap = new HashMap<>();
 
+
         ourMap.put("uid", uid);
+        ourMap.put("location", location);
         ourMap.put("from", start);
         ourMap.put("to", dest);
         ourMap.put("timeFrom", timeStart);
         ourMap.put("timeTo", timeEnd);
         ourMap.put("seats", seats);
+
 
         if (pass!="" && collectionName!="Requests"){
             // it is an offer
@@ -179,13 +184,14 @@ public class OurStore {
      */
 
     public static void postAnOffer(
+                                    GeoPoint location,
                                    String start, String dest,
                                    String pass,
                                    Date timeStart, Date timeEnd,
                                    int seats)
     {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        submitADocument(db, "Offers", start,dest,pass, timeStart, timeEnd, seats);
+        submitADocument(db, location,"Offers", start,dest,pass, timeStart, timeEnd, seats);
     }
 
     /*
@@ -193,6 +199,7 @@ public class OurStore {
      */
 
     public static void postAnRequest(
+                                    GeoPoint location,
                                      String start, String dest,
 
                                      Date timeStart, Date timeEnd,
@@ -200,7 +207,7 @@ public class OurStore {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String pass ="";
-        submitADocument(db, "Requests", start,dest,pass, timeStart, timeEnd, seats);
+        submitADocument(db, location,"Requests", start,dest,pass, timeStart, timeEnd, seats);
     }
 
 

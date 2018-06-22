@@ -48,21 +48,13 @@ public class DashboardActivity extends BaseActivity {
 
         lv = findViewById(R.id.dashboard_list);
 
-
-
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("Satatus", "item clicked");
             }
         });
-
-
-
-
 
 
         final ArrayList<String> list = new ArrayList<String>();
@@ -91,7 +83,6 @@ public class DashboardActivity extends BaseActivity {
                         Log.d("Status", "onStart: "+list.get(0));
 
                         adapter.notifyDataSetChanged();
-
 
                     }
 
