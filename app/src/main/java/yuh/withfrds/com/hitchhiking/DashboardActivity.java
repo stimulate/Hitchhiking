@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -64,9 +65,20 @@ public class DashboardActivity extends BaseActivity {
 
     private void initList(){
 
-        final ArrayList<String> list = new ArrayList<String>();
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list);
+
+        final ArrayList<String> list = new ArrayList<String>();
+        final ArrayList<Map<String,Object>> itemDataList = new ArrayList<Map<String,Object>>();
+
+//        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list);
+
+
+        final SimpleAdapter adapter = new SimpleAdapter(this,
+                itemDataList,
+                R.layout.item,
+                new String[]{"status","from","to"},
+                new int[]{R.id.dashboard_item_state, R.id.dashboard_item_content, R.id.dashboard_item_content2}
+                );
         lv.setAdapter(adapter);
 
         FirebaseFirestore db = OurStore.getDB();
@@ -84,9 +96,18 @@ public class DashboardActivity extends BaseActivity {
                         Log.d("Satatus", document.getId() + " => " + document.getData());
 
                         Map<String, Object> doc = document.getData();
-                        list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
+//                        list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
+                        itemDataList.add(doc);
 
-                        Log.d("Status", "onStart: "+list.get(0));
+                        if (doc.get("matching_uid")!=null  ){
+
+                            doc.put("status", R.drawable.check1);
+
+                        }else{
+                            doc.put("status", R.drawable.check1);
+                        }
+
+                        Log.d("Status", "onStart: "+itemDataList.get(0));
 
                         adapter.notifyDataSetChanged();
 
