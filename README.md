@@ -2,7 +2,7 @@
 This is very basic hitchhiking sharing application.
 
 
-## tecnical stacks
+## technical stacks
 - firestore / firebase
 - target sdk 23
 - google play service (map and location)
@@ -15,7 +15,7 @@ This is very basic hitchhiking sharing application.
 ### advantages of firestore than real time db
 - [rt db does not have a really query but a retrieving data](https://firebase.google.com/docs/database/admin/retrieve-data)
 
-### disadvatages of firestore
+### disadvantages of firestore
 - [cannot query array](https://firebase.google.com/docs/firestore/solutions/arrays)
 - [cannot query geo points/ nearby query](https://stackoverflow.com/questions/46630507/how-to-run-a-geo-nearby-query-with-firestore)
 - [cannot query subcollections](https://stackoverflow.com/questions/46573014/firestore-query-subcollections)
