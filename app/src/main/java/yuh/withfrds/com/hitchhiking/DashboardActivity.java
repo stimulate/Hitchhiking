@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,11 +22,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +39,7 @@ public class DashboardActivity extends BaseActivity {
     private static String TAG = DashboardActivity.class.getSimpleName();
 
     private ListView lv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +60,14 @@ public class DashboardActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void initList(){
 
         final ArrayList<String> list = new ArrayList<String>();
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list);
         lv.setAdapter(adapter);
-
 
         FirebaseFirestore db = OurStore.getDB();
 
@@ -97,14 +103,47 @@ public class DashboardActivity extends BaseActivity {
 
 
 
+// this snap shot listener shoulw work
+//       // https://firebase.google.com/docs/firestore/query-data/queries#compound_queries
+//        q.addSnapshotListener(new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable QuerySnapshot value,
+//                                @Nullable FirebaseFirestoreException e) {
+//                if (e != null) {
+//                    Log.w(TAG, "Listen failed.", e);
+//                    return;
+//                }
+//
+//
+//                for (QueryDocumentSnapshot document : value) {
+//                    if (document.getId() != null) {
+//                        Log.d("Satatus", document.getId() + " => " + document.getData());
+//
+//                        Map<String, Object> doc = document.getData();
+//                        list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
+//
+//                        Log.d("Status", "onStart: "+list.get(0));
+//
+//                        adapter.notifyDataSetChanged();
+//                    }
+//                }
+////                Log.d(TAG, "Current cites in CA: " + cities);
+//            }
+//        });
+
+
+
+
+
 
     }
+
 
     @Override
     protected void onStart() {
         super.onStart();
 
-
+        initList();
 
     }
 
