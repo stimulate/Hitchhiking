@@ -19,10 +19,13 @@
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_activity_offer">Offer</string>
     <string name="title_activity_request">Request</string>
+    <string name="title_activity_search">Search</string>Contact Us>
     <string name="title_activity_maps">Map</string>
-    <string name="title_activity_search">Search</string>
+    <string name="title_activity_settings">Settings</string>
+
+
     <string name="resume">Where am I</string>
-    <string name="title_map">Contact Us</string>
+    <string name="title_map"></string>
 
     <!-- Info page -->
     <string name="info_firname">First Name</string>
@@ -42,7 +45,7 @@
     <string name="info_hiker">Hiker</string>
     <string name="info_plate">Plate Number</string>
     <string name="info_profile">Profile</string>
-    <string name="info_submit">Submit</string>
+    <string name="info_submit">Save</string>
     <string-array name="age_group">
         <item>below 20</item>
         <item>20 to 35</item>

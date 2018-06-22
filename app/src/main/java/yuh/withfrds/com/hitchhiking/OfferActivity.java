@@ -48,7 +48,6 @@ public class OfferActivity extends BaseActivity {
 
 
     private FirebaseFirestore db;
-
     private TextView textStart;
     private TextView textDest;
     private TextView textPass;

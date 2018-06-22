@@ -208,7 +208,8 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
     @Override
     public void onMapLongClick(LatLng latLng) {
         // mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(latLng).draggable(true));
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Choose this position").draggable(true));
+
     }
 
     @Override

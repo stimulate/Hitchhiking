@@ -47,9 +47,11 @@
             android:label="@string/title_activity_search" />
         <activity
             android:name=".Maps_Activity"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_maps"/>
+        <activity
+            android:name=".InfoActivity"
+            android:label="@string/title_activity_settings"></activity>
 
-        </activity>
         <activity
             android:name=".RequestActivity"
             android:label="@string/title_activity_request"></activity>
@@ -57,6 +59,7 @@
             android:name=".OfferActivity"
             android:label="@string/title_activity_offer"
             android:parentActivityName=".DashboardActivity" />
+
     </application>
 
 </manifest>
