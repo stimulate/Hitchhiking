@@ -2,7 +2,9 @@ package yuh.withfrds.com.hitchhiking;
 
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.GeoPoint;
 
 
 public class OfferActivity extends BaseActivity {
@@ -94,11 +106,16 @@ public class OfferActivity extends BaseActivity {
 
 
 
+
+
+
     private void postOffer(){
 
         String startPlace = textStart.getText().toString();
         String destination = textDest.getText().toString();
         String passPlaces = textPass.getText().toString();
+
+        GeoPoint userLocation = new GeoPoint(OurLocation.location.getLatitude(), OurLocation.location.getAltitude());
 
         int seats = Integer.parseInt(textSeats.getText().toString());
 
@@ -113,7 +130,7 @@ public class OfferActivity extends BaseActivity {
         }catch (Exception e){
             Log.e("Error", "postOffer: " +e +"");
         }
-        OurStore.postAnOffer(startPlace, destination, passPlaces, timeStart, timeEnd, seats);
+        OurStore.postAnOffer(userLocation ,startPlace, destination, passPlaces, timeStart, timeEnd, seats);
 
         getBackToDashboard();
     }
