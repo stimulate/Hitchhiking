@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textDestAddress" />
 
     <EditText
-        android:id="@+id/requestTimeDeparture"
+        android:id="@+id/offerTimeDeparture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -57,12 +57,12 @@
         android:ems="10"
         android:hint="@string/time_start"
         android:inputType="datetime"
-        app:layout_constraintEnd_toStartOf="@+id/requestTimeRangeTo"
+        app:layout_constraintEnd_toStartOf="@+id/offerTimeRange"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSeats" />
 
     <EditText
-        android:id="@+id/requestTimeRange"
+        android:id="@+id/offerTimeRange"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -72,7 +72,7 @@
         android:inputType="datetime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.818"
-        app:layout_constraintStart_toEndOf="@+id/requestTimeDeparture"
+        app:layout_constraintStart_toEndOf="@+id/offerTimeDeparture"
         app:layout_constraintTop_toBottomOf="@+id/textSeats" />
 
 
@@ -108,6 +108,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requestTimeRange" />
+        app:layout_constraintTop_toBottomOf="@+id/offerTimeRange" />
 
 </android.support.constraint.ConstraintLayout>
