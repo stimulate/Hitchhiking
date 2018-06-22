@@ -12,10 +12,12 @@
         android:id="@+id/action_post_offer"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/title_activity_offer"/>
+
     <item
         android:id="@+id/action_request"
         android:icon="@android:drawable/ic_menu_help"
         android:title="@string/title_activity_request"/>
+    
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"

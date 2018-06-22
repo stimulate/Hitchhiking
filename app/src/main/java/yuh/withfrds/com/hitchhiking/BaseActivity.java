@@ -1,5 +1,6 @@
 package yuh.withfrds.com.hitchhiking;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
@@ -132,13 +133,15 @@ public class BaseActivity extends AppCompatActivity implements
                 startActivity(new Intent(this, SearchActivity.class));
                 return true;
 
-            case R.id.action_settings :
-                startActivity(new Intent(this, InfoActivity.class));
-                return true;
 
             case R.id.action_sign_out :
                 doSignOut();
                 return true;
+
+            case R.id.action_settings:
+                startActivity(new Intent(this, InfoActivity.class));
+                return true;
+
 
         }
         return super.onOptionsItemSelected(item);

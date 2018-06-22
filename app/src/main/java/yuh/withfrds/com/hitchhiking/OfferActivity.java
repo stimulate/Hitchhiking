@@ -38,6 +38,7 @@ public class OfferActivity extends BaseActivity {
 
     private FirebaseFirestore db;
 
+
     private EditText textStart;
     private EditText textDest;
     private EditText textPass;
@@ -45,6 +46,7 @@ public class OfferActivity extends BaseActivity {
     private EditText textTimeStart;
     private EditText textTimeEnd;
     private EditText textSeats;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
