@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -77,6 +78,8 @@ public class RequestActivity extends BaseActivity {
 
         int seats = Integer.parseInt(textSeats.getText().toString());
 
+        GeoPoint userLocation = new GeoPoint(OurLocation.location.getLatitude(), OurLocation.location.getAltitude());
+
         Date timeStart = new Date();
         Date timeEnd = new Date();
 
@@ -88,7 +91,7 @@ public class RequestActivity extends BaseActivity {
         }catch (Exception e){
             Log.e("Error", "postOffer: " +e +"");
         }
-        OurStore.postAnRequest(startPlace, destination, timeStart, timeEnd, seats);
+        OurStore.postAnRequest(userLocation, startPlace, destination, timeStart, timeEnd, seats);
 
         getBackToDashboard();
 
