@@ -20,8 +20,9 @@ public class OurLocation {
     public static Location location;
     public  static int MY_PERMISSION_ACCESS_COURSE_LOCATION =122;
 
-    private static void InitLocation(Context context) {
+    public static void initLocation(Context context) {
 
+        location= null;
 
         client = LocationServices.getFusedLocationProviderClient(context);
 
