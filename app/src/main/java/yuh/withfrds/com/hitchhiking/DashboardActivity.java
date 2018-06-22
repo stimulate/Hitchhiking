@@ -76,7 +76,7 @@ public class DashboardActivity extends BaseActivity {
         final SimpleAdapter adapter = new SimpleAdapter(this,
                 itemDataList,
                 R.layout.item,
-                new String[]{"from","to","uid"},
+                new String[]{"status","from","to"},
                 new int[]{R.id.dashboard_item_state, R.id.dashboard_item_content, R.id.dashboard_item_content2}
                 );
         lv.setAdapter(adapter);
@@ -98,6 +98,15 @@ public class DashboardActivity extends BaseActivity {
                         Map<String, Object> doc = document.getData();
 //                        list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
                         itemDataList.add(doc);
+
+                        if (doc.get("matching_uid")!=null  ){
+
+                            doc.put("status", R.drawable.check1);
+
+                        }else{
+                            doc.put("status", R.drawable.check1);
+                        }
+
                         Log.d("Status", "onStart: "+itemDataList.get(0));
 
                         adapter.notifyDataSetChanged();
