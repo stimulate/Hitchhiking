@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -118,7 +119,7 @@ public class InfoActivity extends BaseActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Log.d("SUC", "DocumentSnapshot successfully written!");
+                                Toast.makeText(InfoActivity.this,"Save successfully",Toast.LENGTH_LONG);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

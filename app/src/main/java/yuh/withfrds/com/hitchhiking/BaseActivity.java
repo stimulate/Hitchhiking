@@ -133,9 +133,6 @@ public class BaseActivity extends AppCompatActivity implements
                 startActivity(new Intent(this, SearchActivity.class));
                 return true;
 
-            case R.id.action_settings :
-                startActivity(new Intent(this, InfoActivity.class));
-                return true;
 
             case R.id.action_sign_out :
                 doSignOut();
