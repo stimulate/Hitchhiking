@@ -86,7 +86,8 @@
                 android:layout_height="match_parent"
                 android:gravity="left"
                 android:text="@string/info_gender"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -100,14 +101,16 @@
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/info_female" />
+                    android:text="@string/info_female"
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/info_male"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/info_male" />
+                    android:text="@string/info_male"
+                    android:textSize="18sp" />
             </RadioGroup>
         </LinearLayout>
 
@@ -122,21 +125,24 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
                 android:text="@string/info_role"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <CheckBox
                 android:id="@+id/info_hiker"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="@string/info_hiker" />
+                android:text="@string/info_hiker"
+                android:textSize="18sp" />
 
             <CheckBox
                 android:id="@+id/info_driver"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/info_driver" />
+                android:text="@string/info_driver"
+                android:textSize="18sp" />
         </LinearLayout>
 
     <EditText
@@ -164,13 +170,14 @@
 
         <TextView
             android:id="@+id/textView22"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/info_age" />
+            android:text="@string/info_age"
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/age"
-            android:layout_width="63dp"
+            android:layout_width="234dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
 

@@ -119,7 +119,7 @@ public class InfoActivity extends BaseActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(InfoActivity.this,"Save successfully",Toast.LENGTH_LONG);
+                                Toast.makeText(InfoActivity.this,"Save successfully",Toast.LENGTH_LONG).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

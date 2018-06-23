@@ -2,9 +2,7 @@ package yuh.withfrds.com.hitchhiking;
 
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,14 +14,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.GeoPoint;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class OfferActivity extends BaseActivity {
@@ -39,19 +34,19 @@ public class OfferActivity extends BaseActivity {
     private FirebaseFirestore db;
 
 
-    private EditText textStart;
-    private EditText textDest;
+     EditText textStart;
+     EditText textDest;
     private EditText textPass;
 
     private EditText textTimeStart;
     private EditText textTimeEnd;
     private EditText textSeats;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer);
+        EventBus.getDefault().register(this);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -144,4 +139,16 @@ public class OfferActivity extends BaseActivity {
         postOffer();
     }
 
+    @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
+    public void getOffer(Msg mMsg) {
+     textStart.setText(mMsg.getDep());
+     mMsg.getDep();
+     textDest.setText(mMsg.getDest());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

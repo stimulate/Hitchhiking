@@ -27,7 +27,8 @@ public class BaseActivity extends AppCompatActivity implements
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
     private int selectedNavItemId;
-
+    public static double Lat;
+    public static double Long;
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         /**

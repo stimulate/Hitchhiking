@@ -2,6 +2,9 @@ package yuh.withfrds.com.hitchhiking;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -17,8 +20,16 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.Request.Method;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpResponse;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -35,24 +46,44 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         GoogleMap.OnMarkerDragListener,
         GoogleMap.OnMapLongClickListener,
         GoogleMap.OnMarkerClickListener,
         View.OnClickListener {
-    private static final String TAG = "Maps_Activity";
+    private static final String TAG = Maps_Activity.class.getSimpleName();
     private GoogleMap mMap;
+    private String URL_JSON = "https://datafilter1.mybluemix.net/address?lat=";
+    private ProgressDialog pDialog;
+    private String jsonResponse;
+    private String v1,v2;
+    private String l1,l2;
     LocationManager locationManager;
     double longitude, latitude;
     private GoogleApiClient googleApiClient;
     int zoomLevel = 12;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maps);
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Please wait...");
+        pDialog.setCancelable(false);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -65,6 +96,8 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                 .build();
 
         Button btn = findViewById(R.id.btn);
+        Button btn1 = findViewById(R.id.btn1);
+        Button btn2 = findViewById(R.id.btn2);
         final FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +109,11 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                         @Override
                         public void onComplete(@NonNull Task<Location> task) {
 
+                            if(Lat != 0.0){
+                                makeJsonObjectRequest(Lat, Long);
+                                v1 = jsonResponse;
+                                l1 = Lat + "," + Long;
+                            }
                             moveMap();
                             System.err.println(task.getResult().getLatitude());
                         }
@@ -83,6 +121,37 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                 } catch (SecurityException ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Task<Location> location = client.getLastLocation();
+
+                    location.addOnCompleteListener(new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Location> task) {
+
+                            if(Lat != 0.0){
+                                makeJsonObjectRequest(Lat, Long);
+                                v2 = jsonResponse;
+                                l2 = Lat + "," + Long;
+                            }
+                            moveMap();
+                            System.err.println(task.getResult().getLatitude());
+                        }
+                    });
+                } catch (SecurityException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EventBus.getDefault().postSticky(new Msg(v1,v2,l1,l2)); ;
+                   finish();
             }
         });
     }
@@ -100,7 +169,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         final LatLng Unitec = new LatLng(-36.880697, 174.707785);
 
         BitmapDescriptor itemBitmap = BitmapDescriptorFactory.fromResource(R.drawable.unitec);
@@ -182,7 +251,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(zoomLevel));
         mMap.getUiSettings().setZoomControlsEnabled(true);
-        zoomLevel+=5;
+        //zoomLevel+=5;
     }
 
     @Override
@@ -207,27 +276,76 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        // mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(latLng).title("Choose this position").draggable(true));
+        mMap.clear();
+            mMap.addMarker(new MarkerOptions().position(latLng).title("Choose this position").draggable(true));
+            Lat = latLng.latitude;
+            Long = latLng.longitude;
+            makeJsonObjectRequest(Lat,Long);
+    }
+    private void makeJsonObjectRequest(Double mlat, Double mlong) {
 
+        showpDialog();
+        String mUrl = URL_JSON + mlat + "&lon=" + mlong;
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
+                mUrl, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+
+                try {
+                    // Parsing json object response
+                    // response will be a json object
+                    jsonResponse = response.getString("address");
+
+                    Toast.makeText(Maps_Activity.this, jsonResponse, Toast.LENGTH_LONG).show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(),
+                            "Error: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+                hidepDialog();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                // hide the progress dialog
+                hidepDialog();
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 
     @Override
     public void onMarkerDragStart(Marker marker) {
-        Toast.makeText(Maps_Activity.this, "onMarkerDragStart", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Maps_Activity.this, "onMarkerDragStart", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onMarkerDrag(Marker marker) {
-        Toast.makeText(Maps_Activity.this, "onMarkerDrag", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Maps_Activity.this, "onMarkerDrag", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
         // getting the Co-ordinates
-        latitude = marker.getPosition().latitude;
-        longitude = marker.getPosition().longitude;
-
         //move to current position
         moveMap();
     }
@@ -247,8 +365,9 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Toast.makeText(Maps_Activity.this, "onMarkerClick", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Maps_Activity.this, "onMarkerClick", Toast.LENGTH_SHORT).show();
         return true;
     }
+
 
 }

@@ -124,7 +124,7 @@ public class DashboardActivity extends BaseActivity {
 
 
 
-// this snap shot listener shoulw work
+// this snap shot listener should work
 //       // https://firebase.google.com/docs/firestore/query-data/queries#compound_queries
 //        q.addSnapshotListener(new EventListener<QuerySnapshot>() {
 //            @Override
