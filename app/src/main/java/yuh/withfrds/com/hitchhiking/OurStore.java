@@ -307,6 +307,11 @@ public class OurStore {
         GeoPoint nePoint = getNEPoint(dest);
 
 
+        // the limitation of store query is than the range quesy can be only used in one filed
+        // so we have to limit the result after query by hand
+        // in location to field
+        // https://firebase.google.com/docs/firestore/query-data/queries
+
         q=ref.whereLessThanOrEqualTo("location_from", nePoint).
                 whereGreaterThanOrEqualTo("location_from", swPoint);
 
@@ -336,6 +341,8 @@ public class OurStore {
 //                        list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
                         results.add(doc);
                     }
+
+                    // limit the results to to filed by hand
 
                 } else {
                     Log.d("Error", "Error getting documents: ", task.getException());
