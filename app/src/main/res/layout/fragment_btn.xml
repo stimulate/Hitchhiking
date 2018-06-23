@@ -14,13 +14,12 @@
 
         <Button
             android:id="@+id/btn"
-            android:layout_width="107dp"
-            android:layout_height="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:gravity="left"
-            android:text="@string/map_fr"
-            />
+            android:text="@string/map_fr" />
 
         <Button
             android:id="@+id/btn1"
@@ -28,8 +27,7 @@
             android:layout_height="43dp"
             android:layout_marginStart="8dp"
             android:gravity="center_horizontal"
-            android:text="@string/map_to"
-            />
+            android:text="@string/map_to" />
 
         <Button
             android:id="@+id/btn2"
@@ -50,7 +48,6 @@
             android:text="@string/map_via"
             tools:layout_editor_absoluteX="241dp"
             tools:layout_editor_absoluteY="76dp" />
-
 
     </LinearLayout>
 
