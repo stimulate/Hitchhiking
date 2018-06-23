@@ -279,7 +279,6 @@ public class OurStore {
     This is the core function for matching requests and offers
     parameters, doc (offer or request), user profile
      */
-
     public static Query getMatchingQuery(String collection_belong_to, Map<String, Object> doc, Map<String, Object> user){
 
 
@@ -320,15 +319,18 @@ public class OurStore {
         return getMatchingQuery(collection_belong_to,doc, null);
     }
 
-
+    /*
+    This is a example function to do a matching query
+     */
     public static void  doQuery(Query q){
         final ArrayList<Map<String,Object>> results  = new ArrayList<>();
         q.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
+                    Log.d("Status", "doing a query");
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d("Satatus", document.getId() + " => " + document.getData());
+                        Log.d("Status", document.getId() + " => " + document.getData());
 
                         Map<String, Object> doc = document.getData();
 //                        list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
@@ -341,7 +343,5 @@ public class OurStore {
             }
         });
     }
-
-
 
 }
