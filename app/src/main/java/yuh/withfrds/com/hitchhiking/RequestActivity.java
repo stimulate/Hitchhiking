@@ -1,6 +1,7 @@
 package yuh.withfrds.com.hitchhiking;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,12 @@ public class RequestActivity extends BaseActivity {
     private EditText textSeats;
 
 
+    private static Location depLoc;
+    private static Location destLoc;
+    private static String depAddress;
+    private static String destAddress;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +56,11 @@ public class RequestActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         TIMEFORMAT = OfferActivity.TIMEFORMAT;
+
+        EventBus.getDefault().register(this);
+
+        textStart.setText(depAddress);
+        textDest.setText(destAddress);
     }
 
     private void initTexts(){
@@ -75,6 +87,12 @@ public class RequestActivity extends BaseActivity {
         finish();
     }
 
+    private void openMapActivity(){
+
+        Intent intent = new Intent(this, Maps_Activity.class);
+        startActivity(intent);
+//        finish();
+    }
 
     private void postRequest(){
         String startPlace = textStart.getText().toString();
@@ -95,7 +113,7 @@ public class RequestActivity extends BaseActivity {
         }catch (Exception e){
             Log.e("Error", "postOffer: " +e +"");
         }
-        OurStore.postAnRequest(userLocation, startPlace, destination, timeStart, timeEnd, seats);
+        OurStore.postAnRequest(userLocation, startPlace, destination, timeStart, timeEnd, seats, depLoc, destLoc);
 
         getBackToDashboard();
 
@@ -106,16 +124,22 @@ public class RequestActivity extends BaseActivity {
     }
 
 
+    public void openMap(View view){
+        openMapActivity();
+    }
+
     @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
     public void getAddresses(Msg mMsg) {
-        textStart.setText(mMsg.getDep());
-        mMsg.getDep();
-        textDest.setText(mMsg.getDest());
+
+        depAddress =  mMsg.getDep();
+        destAddress= mMsg.getDest();
+        depLoc = mMsg.getDepLocation();
+        destLoc = mMsg.getDestLocation();
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         EventBus.getDefault().unregister(this);
     }
 
