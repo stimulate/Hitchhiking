@@ -126,7 +126,7 @@ public class RequestActivity extends BaseActivity {
         openMapActivity();
     }
 
-    @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
+    @Subscribe(threadMode = ThreadMode.ASYNC)
     public void getAddresses(Msg mMsg) {
 
         depAddress =  mMsg.getDep();

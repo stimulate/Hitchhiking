@@ -162,7 +162,7 @@ public class OfferActivity extends BaseActivity {
         openMapActivity();
     }
 
-    @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
+    @Subscribe(threadMode = ThreadMode.ASYNC)
     public void getAddresses(Msg mMsg) {
          textStart.setText(mMsg.getDep());
          textDest.setText(mMsg.getDest());

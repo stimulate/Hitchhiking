@@ -161,7 +161,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().postSticky(new Msg(v1,v2,l1,l2,path)); ;
+                EventBus.getDefault().post(new Msg(v1,v2,l1,l2,path)); ;
                    finish();
             }
         });
