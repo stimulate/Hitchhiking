@@ -38,16 +38,6 @@ created by Tim
 public class OurStore {
 
 
-    private static Location depLoc;
-    private static Location destLoc;
-
-    private static GeoPoint depPoint;
-    private static GeoPoint destPoint;
-
-    private static String depAddress;
-    private static String destAddress;
-
-
     private static String[] splitPasses(String pass){
 
         // remove all white spaces
@@ -67,10 +57,12 @@ public class OurStore {
             FirebaseFirestore db,
             GeoPoint current_location_point,
             String collectionName ,
-            String start, String dest,
+            String dep, String dest,
             String pass,
             Date timeStart, Date timeEnd,
-            int seats
+            int seats,
+            GeoPoint depPoint,
+            GeoPoint destPoint
     ){
 
 
@@ -85,8 +77,8 @@ public class OurStore {
 
         ourMap.put("uid", uid);
         ourMap.put("location_current", current_location_point);
-        ourMap.put("from", depAddress);
-        ourMap.put("to", destAddress);
+        ourMap.put("from", dep);
+        ourMap.put("to", dest);
 
         ourMap.put("location_from", depPoint);
         ourMap.put("location_to", destPoint);
@@ -217,15 +209,13 @@ public class OurStore {
     {
 
 
-        depLoc= depLocation;
-        destLoc = destLocation;
-        depPoint= getGeoPoint(depLocation);
-        destPoint = getGeoPoint(destLocation);
-        depAddress =start;
-        destAddress = dest;
+
+        GeoPoint depPoint= getGeoPoint(depLocation);
+        GeoPoint destPoint = getGeoPoint(destLocation);
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        submitADocument(db, location,"Offers", start,dest,pass, timeStart, timeEnd, seats);
+        submitADocument(db, location,"Offers", start, dest, pass, timeStart, timeEnd, seats, depPoint, destPoint);
     }
 
     /*
@@ -235,25 +225,18 @@ public class OurStore {
     public static void postAnRequest(
                                     GeoPoint location,
                                      String start, String dest,
-
                                      Date timeStart, Date timeEnd,
                                      int seats,
                                     Location depLocation,
                                     Location destLocation
 
     ){
-
-
-        depLoc= depLocation;
-        destLoc = destLocation;
-        depPoint= getGeoPoint(depLocation);
-        destPoint = getGeoPoint(destLocation);
-        depAddress =start;
-        destAddress = dest;
+        GeoPoint depPoint= getGeoPoint(depLocation);
+        GeoPoint destPoint = getGeoPoint(destLocation);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String pass ="";
-        submitADocument(db, location,"Requests", start,dest,pass, timeStart, timeEnd, seats);
+        submitADocument(db, location,"Requests", start,dest,pass, timeStart, timeEnd, seats, depPoint, destPoint);
     }
 
 
@@ -266,10 +249,24 @@ public class OurStore {
     }
 
 
-    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc){
+    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc, Map<String, Object> user){
+
+        if (user!=null){
+
+        }
+
+
 
         return null;
     }
+
+    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc){
+
+        return getMatchingResults(doc, null);
+    }
+
+
+
 
 
 

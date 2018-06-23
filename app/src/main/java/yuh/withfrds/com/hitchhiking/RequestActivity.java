@@ -41,11 +41,11 @@ public class RequestActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request);
+        setContentView(R.layout.activity_request2);
+        EventBus.getDefault().register(this);
 
         initTexts();
         initFirestore();
-
 
     }
 
@@ -55,7 +55,7 @@ public class RequestActivity extends BaseActivity {
         super.onStart();
         TIMEFORMAT = OfferActivity.TIMEFORMAT;
 
-        EventBus.getDefault().register(this);
+
 
         textStart.setText(depAddress);
         textDest.setText(destAddress);
@@ -136,8 +136,8 @@ public class RequestActivity extends BaseActivity {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 

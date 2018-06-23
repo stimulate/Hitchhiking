@@ -33,12 +33,9 @@ public class OfferActivity extends BaseActivity {
     public static String TIMEFORMAT = "HH:mm dd/MM/yyyy";
 
     private FirebaseFirestore db;
-
-
     private EditText textStart;
     private EditText textDest;
     private EditText textPass;
-
     private EditText textTimeStart;
     private EditText textTimeEnd;
     private EditText textSeats;
@@ -60,6 +57,7 @@ public class OfferActivity extends BaseActivity {
         initTexts();
         initFirestore();
         EventBus.getDefault().register(this);
+
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -86,6 +84,7 @@ public class OfferActivity extends BaseActivity {
 
 //        textStart.setText(depAddress);
 //        textDest.setText(destAddress);
+
     }
 
     private void initFirestore(){

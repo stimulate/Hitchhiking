@@ -8,7 +8,7 @@
 
 
     <Button
-        android:id="@+id/btn_open_map"
+        android:id="@+id/request_open_map"
         android:layout_width="280dp"
 
         android:layout_height="53dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textStartAddress"
+        android:id="@+id/requestStartAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -33,11 +33,11 @@
         android:hint="@string/from"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_open_map" />
+        app:layout_constraintTop_toBottomOf="@+id/request_open_map" />
 
 
     <EditText
-        android:id="@+id/textDestAddress"
+        android:id="@+id/requestDestAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -47,24 +47,13 @@
         android:hint="@string/destination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textStartAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/requestStartAddress" />
+
+
 
 
     <EditText
-        android:id="@+id/textPassAddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/pass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDestAddress" />
-
-    <EditText
-        android:id="@+id/offerTimeDeparture"
+        android:id="@+id/requestTimeDeparture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -72,12 +61,12 @@
         android:ems="10"
         android:hint="@string/time_start"
         android:inputType="datetime"
-        app:layout_constraintEnd_toStartOf="@+id/offerTimeRangeTo"
+        app:layout_constraintEnd_toStartOf="@+id/requestTimeRangeTo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSeats" />
+        app:layout_constraintTop_toBottomOf="@+id/requestDestAddress" />
 
     <EditText
-        android:id="@+id/offerTimeRangeTo"
+        android:id="@+id/requestTimeRangeTo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -87,12 +76,12 @@
         android:inputType="datetime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.818"
-        app:layout_constraintStart_toEndOf="@+id/offerTimeDeparture"
-        app:layout_constraintTop_toBottomOf="@+id/textSeats" />
+        app:layout_constraintStart_toEndOf="@+id/requestTimeDeparture"
+        app:layout_constraintTop_toBottomOf="@+id/requestDestAddress" />
 
 
     <EditText
-        android:id="@+id/textSeats"
+        android:id="@+id/requestSeats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -104,11 +93,11 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPassAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/requestTimeRangeTo" />
 
 
     <Button
-        android:id="@+id/buttonPost"
+        android:id="@+id/buttonRequest"
         android:layout_width="280dp"
 
         android:layout_height="53dp"
@@ -117,12 +106,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="postOffer"
+        android:onClick="postRequest"
         android:text="POST"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/offerTimeRangeTo" />
+        app:layout_constraintTop_toBottomOf="@+id/requestSeats" />
 
 </android.support.constraint.ConstraintLayout>
