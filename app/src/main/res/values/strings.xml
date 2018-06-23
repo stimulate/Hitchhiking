@@ -21,7 +21,7 @@
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_request">Request</string>
     <string name="title_activity_search">Search</string>Contact Us>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps"></string>
 
 
     <string name="map_fr">Departure</string>

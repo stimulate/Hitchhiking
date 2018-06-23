@@ -42,10 +42,9 @@ public class RequestActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request2);
-        EventBus.getDefault().register(this);
-
         initTexts();
         initFirestore();
+        EventBus.getDefault().register(this);
 
     }
 
@@ -54,9 +53,6 @@ public class RequestActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         TIMEFORMAT = OfferActivity.TIMEFORMAT;
-
-
-
         textStart.setText(depAddress);
         textDest.setText(destAddress);
     }

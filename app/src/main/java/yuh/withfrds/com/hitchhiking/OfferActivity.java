@@ -23,8 +23,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 
 public class OfferActivity extends BaseActivity {
-
-
     /*
     Author:
     tim
@@ -45,10 +43,6 @@ public class OfferActivity extends BaseActivity {
     private static Location destLoc;
     private static String depAddress;
     private static String destAddress;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +166,6 @@ public class OfferActivity extends BaseActivity {
         depLoc = mMsg.getDepLocation();
         destLoc = mMsg.getDestLocation();
     }
-
 
 //    @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
 //    public void getAddresses(Msg mMsg) {
