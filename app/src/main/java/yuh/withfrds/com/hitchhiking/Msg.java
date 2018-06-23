@@ -35,22 +35,19 @@ import android.location.Location;
     private Location getLocation(String loc){
 
         String[] parts = loc.split(",");
-        double lat = Double.parseDouble(parts[0]); // 004
-        double lon = Double.parseDouble(parts[1]); // 034556
+        double lat = Double.parseDouble(parts[0]);
+        double lon = Double.parseDouble(parts[1]);
 
         Location targetLocation = new Location("");//provider name is unnecessary
         targetLocation.setLatitude(lat);//your coords of course
         targetLocation.setLongitude(lon);
-
         return targetLocation;
-
     }
     // added by Tim
     public Location getDepLocation(){
         return getLocation(l1);
 
     }
-
     public Location getDestLocation(){
         return getLocation(l2);
     }
