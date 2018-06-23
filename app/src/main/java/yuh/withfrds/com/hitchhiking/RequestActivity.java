@@ -16,8 +16,6 @@ public class RequestActivity extends BaseActivity {
 
 
     public static String TIMEFORMAT;
-
-
     private FirebaseFirestore db;
 
     private EditText textTimeStart;

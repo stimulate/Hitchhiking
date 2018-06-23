@@ -2,18 +2,25 @@ package yuh.withfrds.com.hitchhiking;
 
 import android.location.Location;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+
 /**
  * Created by a_yu_ on 2018/6/23.
  */
     public class Msg {
         public String dep;
         public String dest;
+        public HashMap<String,String> path;
         public String l1;
         public String l2;
 
-        public Msg(String moffer_dep, String moffer_dest, String l1, String l2){
+        public Msg(String moffer_dep, String moffer_dest, String l1, String l2, HashMap<String,String> mpath){
          this.dep = moffer_dep;
          this.dest = moffer_dest;
+         this.path = mpath;
          this.l1 = l1;
          this.l2 = l2;
      }
@@ -51,5 +58,7 @@ import android.location.Location;
     public Location getDestLocation(){
         return getLocation(l2);
     }
-
+    public HashMap<String, String> getPath(){
+            return path;
+    }
 }
