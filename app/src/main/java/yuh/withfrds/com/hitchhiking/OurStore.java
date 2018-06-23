@@ -242,8 +242,6 @@ public class OurStore {
                                     Location destLocation
 
     ){
-
-
         depLoc= depLocation;
         destLoc = destLocation;
         depPoint= getGeoPoint(depLocation);
@@ -266,10 +264,23 @@ public class OurStore {
     }
 
 
-    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc){
+    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc, Map<String, Object> user){
 
+        if (user!=null){
+
+        }else{
+
+        }
         return null;
     }
+
+    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc){
+
+        return getMatchingResults(doc, null);
+    }
+
+
+
 
 
 
