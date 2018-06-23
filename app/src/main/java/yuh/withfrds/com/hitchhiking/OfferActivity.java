@@ -2,6 +2,7 @@ package yuh.withfrds.com.hitchhiking;
 
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,13 +44,20 @@ public class OfferActivity extends BaseActivity {
     private EditText textSeats;
 
 
+    private static Location depLoc;
+    private static Location destLoc;
+    private static String depAddress;
+    private static String destAddress;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer);
-        EventBus.getDefault().register(this);
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +80,18 @@ public class OfferActivity extends BaseActivity {
         });
 
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+
+        textStart.setText(depAddress);
+        textDest.setText(destAddress);
+
+    }
+
     private void initFirestore(){
 
         // the fire storage codes starts here
@@ -103,10 +123,12 @@ public class OfferActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
+    private void openMapActivity(){
 
-
-
-
+        Intent intent = new Intent(this, Maps_Activity.class);
+        startActivity(intent);
+//        finish();
+    }
 
 
     private void postOffer(){
@@ -122,15 +144,17 @@ public class OfferActivity extends BaseActivity {
         Date timeStart = new Date();
         Date timeEnd = new Date();
 
-        try {
+        if (textTimeStart.getText().toString()!="" && textTimeEnd.getText().toString() != "") {
+            try {
 
-            timeStart = new SimpleDateFormat(TIMEFORMAT).parse(textTimeStart.getText().toString());
-            timeEnd = new SimpleDateFormat(TIMEFORMAT).parse(textTimeEnd.getText().toString());
+                timeStart = new SimpleDateFormat(TIMEFORMAT).parse(textTimeStart.getText().toString());
+                timeEnd = new SimpleDateFormat(TIMEFORMAT).parse(textTimeEnd.getText().toString());
 
-        }catch (Exception e){
-            Log.e("Error", "postOffer: " +e +"");
+            } catch (Exception e) {
+                Log.e("Error", "postOffer: " + e + "");
+            }
         }
-        OurStore.postAnOffer(userLocation ,startPlace, destination, passPlaces, timeStart, timeEnd, seats);
+        OurStore.postAnOffer(userLocation ,startPlace, destination, passPlaces, timeStart, timeEnd, seats, depLoc, destLoc);
 
         getBackToDashboard();
     }
@@ -142,16 +166,36 @@ public class OfferActivity extends BaseActivity {
         postOffer();
     }
 
-    @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
-    public void getOffer(Msg mMsg) {
-     textStart.setText(mMsg.getDep());
-     mMsg.getDep();
-     textDest.setText(mMsg.getDest());
+    public void openMap(View view){
+        openMapActivity();
     }
 
+    @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
+    public void getAddresses(Msg mMsg) {
+//         textStart.setText(mMsg.getDep());
+         mMsg.getDep();
+//         textDest.setText(mMsg.getDest());
+        depAddress =  mMsg.getDep();
+
+        destAddress= mMsg.getDest();
+        depLoc = mMsg.getDepLocation();
+        destLoc = mMsg.getDestLocation();
+    }
+
+
+//    @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
+//    public void getAddresses(Msg mMsg) {
+//        depAddress =  mMsg.getDep();
+//        textStart.setText(depAddress);
+//        destAddress= mMsg.getDest();
+//        textDest.setText(destAddress);
+//        depLoc = mMsg.getDepLocation();
+//        destLoc = mMsg.getDestLocation();
+//    }
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         EventBus.getDefault().unregister(this);
     }
 }

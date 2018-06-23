@@ -9,6 +9,10 @@ import android.widget.EditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -99,6 +103,20 @@ public class RequestActivity extends BaseActivity {
 
     public void postRequest(View view){
         postRequest();
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
+    public void getAddresses(Msg mMsg) {
+        textStart.setText(mMsg.getDep());
+        mMsg.getDep();
+        textDest.setText(mMsg.getDest());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
 }

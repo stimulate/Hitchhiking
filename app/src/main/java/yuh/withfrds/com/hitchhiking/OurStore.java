@@ -1,6 +1,8 @@
 package yuh.withfrds.com.hitchhiking;
 
 
+import android.app.Activity;
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -17,6 +19,10 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,7 +38,14 @@ created by Tim
 public class OurStore {
 
 
+    private static Location depLoc;
+    private static Location destLoc;
 
+    private static GeoPoint depPoint;
+    private static GeoPoint destPoint;
+
+    private static String depAddress;
+    private static String destAddress;
 
 
     private static String[] splitPasses(String pass){
@@ -44,9 +57,15 @@ public class OurStore {
     }
 
 
+    private static GeoPoint getGeoPoint(Location location){
+
+        return new GeoPoint(location.getLatitude(), location.getLongitude());
+    }
+
+
     private static void submitADocument(
             FirebaseFirestore db,
-            GeoPoint location,
+            GeoPoint current_location_point,
             String collectionName ,
             String start, String dest,
             String pass,
@@ -65,9 +84,12 @@ public class OurStore {
 
 
         ourMap.put("uid", uid);
-        ourMap.put("location", location);
-        ourMap.put("from", start);
-        ourMap.put("to", dest);
+        ourMap.put("location_current", current_location_point);
+        ourMap.put("from", depAddress);
+        ourMap.put("to", destAddress);
+
+        ourMap.put("location_from", depPoint);
+        ourMap.put("location_to", destPoint);
         ourMap.put("timeFrom", timeStart);
         ourMap.put("timeTo", timeEnd);
         ourMap.put("seats", seats);
@@ -117,7 +139,6 @@ public class OurStore {
                         );
 
                         // store the postOffer data
-
                         offersCollection.add(ourMap);
 
                     }
@@ -189,8 +210,20 @@ public class OurStore {
                                    String start, String dest,
                                    String pass,
                                    Date timeStart, Date timeEnd,
-                                   int seats)
+                                   int seats,
+                                    Location depLocation,
+                                    Location destLocation
+                                    )
     {
+
+
+        depLoc= depLocation;
+        destLoc = destLocation;
+        depPoint= getGeoPoint(depLocation);
+        destPoint = getGeoPoint(destLocation);
+        depAddress =start;
+        destAddress = dest;
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         submitADocument(db, location,"Offers", start,dest,pass, timeStart, timeEnd, seats);
     }
@@ -205,6 +238,12 @@ public class OurStore {
 
                                      Date timeStart, Date timeEnd,
                                      int seats){
+
+//
+//        depLoc= depLocation;
+//        destLoc = destLocation;
+//        depAddress =start;
+//        destAddress = dest;
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String pass ="";
@@ -225,6 +264,8 @@ public class OurStore {
 
         return null;
     }
+
+
 
 
 }
