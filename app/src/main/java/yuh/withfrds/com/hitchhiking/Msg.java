@@ -5,6 +5,7 @@ import android.location.Location;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,11 +14,12 @@ import java.util.Map;
     public class Msg {
         public String dep;
         public String dest;
-        public HashMap<String,String> path;
+        public ArrayList<Tuple> path;
         public String l1;
         public String l2;
 
-        public Msg(String moffer_dep, String moffer_dest, String l1, String l2, HashMap<String,String> mpath){
+
+        public Msg(String moffer_dep, String moffer_dest, String l1, String l2, ArrayList<Tuple> mpath){
          this.dep = moffer_dep;
          this.dest = moffer_dest;
          this.path = mpath;
@@ -39,6 +41,7 @@ import java.util.Map;
     }
 
 
+
     private Location getLocation(String loc){
 
         String[] parts = loc.split(",");
@@ -58,7 +61,7 @@ import java.util.Map;
     public Location getDestLocation(){
         return getLocation(l2);
     }
-    public HashMap<String, String> getPath(){
+    public ArrayList<Tuple> getPath(){
             return path;
     }
 }

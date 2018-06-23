@@ -6,6 +6,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +21,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -61,6 +66,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
@@ -76,12 +82,11 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
     private String jsonResponse;
     private String v1,v2;
     private String l1,l2;
-    private HashMap<String, String> path;
     LocationManager locationManager;
     double longitude, latitude;
     private GoogleApiClient googleApiClient;
     int zoomLevel = 12;
-
+    ArrayList path = new ArrayList<Tuple>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,7 +178,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                             if(Lat != 0.0){
                                 makeJsonObjectRequest(Lat, Long);
                                 String temp = Lat+ "," + Long;
-                                path.put(jsonResponse, temp);
+                                path.add(new Tuple(jsonResponse, temp));
                             }
                             moveMap();
                             System.err.println(task.getResult().getLatitude());
@@ -200,16 +205,6 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
     public void onMapReady(GoogleMap googleMap) {
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        final LatLng Unitec = new LatLng(-36.880697, 174.707785);
-
-        BitmapDescriptor itemBitmap = BitmapDescriptorFactory.fromResource(R.drawable.unitec);
-        MarkerOptions itemMarker = new MarkerOptions()
-                .position(new LatLng(-36.881305, 174.706192))
-                .icon(itemBitmap);
-        googleMap.addMarker(itemMarker);
-        googleMap.addMarker(new MarkerOptions()
-                .position(Unitec)
-                .title("Unitec"));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
@@ -217,9 +212,8 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
             return;
         }
         googleMap.setMyLocationEnabled(true);
-
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(Unitec));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(Unitec));
+//        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
         googleMap.setOnMarkerDragListener(this);
         googleMap.setOnMapLongClickListener(this);
         mMap = googleMap;
@@ -273,7 +267,9 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
          * move the camera with animation
          */
         LatLng latLng = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions()
+        Bitmap markerBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.location);
+
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(markerBitmap))
                 .position(latLng)
                 .draggable(true)
                 .title("My Position"));
@@ -399,5 +395,6 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         return true;
     }
 
-
 }
+
+
