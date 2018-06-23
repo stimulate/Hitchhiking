@@ -237,13 +237,19 @@ public class OurStore {
                                      String start, String dest,
 
                                      Date timeStart, Date timeEnd,
-                                     int seats){
+                                     int seats,
+                                    Location depLocation,
+                                    Location destLocation
 
-//
-//        depLoc= depLocation;
-//        destLoc = destLocation;
-//        depAddress =start;
-//        destAddress = dest;
+    ){
+
+
+        depLoc= depLocation;
+        destLoc = destLocation;
+        depPoint= getGeoPoint(depLocation);
+        destPoint = getGeoPoint(destLocation);
+        depAddress =start;
+        destAddress = dest;
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String pass ="";
