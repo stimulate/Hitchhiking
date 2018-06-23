@@ -19,6 +19,7 @@ This is very basic hitchhiking sharing application.
 - [cannot query array](https://firebase.google.com/docs/firestore/solutions/arrays)
 - [cannot query geo points/ nearby query](https://stackoverflow.com/questions/46630507/how-to-run-a-geo-nearby-query-with-firestore)
 - [cannot query subcollections](https://stackoverflow.com/questions/46573014/firestore-query-subcollections)
+- [the range query (< <= > >=) can be only used in one filed](https://firebase.google.com/docs/firestore/query-data/queries)
 
 
 ## Errors Tracking
@@ -30,7 +31,7 @@ This is very basic hitchhiking sharing application.
 
 this is an encapsulation class for interacting with fire store.
 
-there are 4 public functions for now
+there are some public functions for now
 - postAnOffer
 - postAnRequest
 - setUserProfile (not yet)
