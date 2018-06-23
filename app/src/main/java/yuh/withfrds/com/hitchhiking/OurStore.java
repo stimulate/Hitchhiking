@@ -17,6 +17,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -216,6 +217,12 @@ public class OurStore {
      */
 
     public  static QuerySnapshot getAll(){
+        return null;
+    }
+
+
+    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc){
+
         return null;
     }
 
