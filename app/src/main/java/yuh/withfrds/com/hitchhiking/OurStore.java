@@ -38,6 +38,19 @@ created by Tim
 public class OurStore {
 
 
+    // ref about gps
+    // nz latitude around 40.9006° S,
+    // one minute of latitue is around 1.85km
+    // one minute of longtitude is around 1.42km
+
+    // http://www.longitudestore.com/how-big-is-one-gps-degree.html
+
+    // we assume in 2km is nearyby
+
+    private static final double LAT_DIFF = 2.0/1.85/60;
+    private static final double LONG_DIFF = 2.0/1.42/60;
+
+
     private static String[] splitPasses(String pass){
 
         // remove all white spaces
@@ -52,6 +65,20 @@ public class OurStore {
         return new GeoPoint(location.getLatitude(), location.getLongitude());
     }
 
+    private static GeoPoint getSWPoint(GeoPoint point){
+
+        double lat = point.getLatitude();
+        double lon = point.getLongitude();
+
+        return new GeoPoint(lat-LAT_DIFF, lon-LONG_DIFF);
+
+    }
+    private static GeoPoint getNEPoint(GeoPoint point){
+        double lat = point.getLatitude();
+        double lon = point.getLongitude();
+
+        return new GeoPoint(lat+LAT_DIFF, lon+LONG_DIFF);
+    }
 
     private static void submitADocument(
             FirebaseFirestore db,
@@ -248,27 +275,80 @@ public class OurStore {
         return null;
     }
 
+    /*
+    This is the core function for matching requests and offers
+    parameters, doc (offer or request), user profile
+     */
+    public static Query getMatchingQuery(String collection_belong_to, Map<String, Object> doc, Map<String, Object> user){
 
-    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc, Map<String, Object> user){
+
+        String collection_name = "Offers";
+
+
+
+        if (collection_belong_to == "Offers"){
+            collection_name = "Requests";
+        }
+        CollectionReference ref = getDB().collection(collection_name);
+        Query q;
 
         if (user!=null){
 
         }
 
 
+        GeoPoint dep = (GeoPoint) doc.get("location_from");
+        GeoPoint dest = (GeoPoint) doc.get("location_to");
 
-        return null;
+        GeoPoint current = (GeoPoint) doc.get("location_current");
+
+
+        GeoPoint swPoint = getSWPoint(dep);
+        GeoPoint nePoint = getNEPoint(dest);
+
+
+        // the limitation of store query is than the range quesy can be only used in one filed
+        // so we have to limit the result after query by hand
+        // in location to field
+        // https://firebase.google.com/docs/firestore/query-data/queries
+
+        q=ref.whereLessThanOrEqualTo("location_from", nePoint).
+                whereGreaterThanOrEqualTo("location_from", swPoint);
+
+        return q;
+
     }
 
-    public static ArrayList<Map<String,Object>> getMatchingResults( Map<String, Object> doc){
+    public static Query getMatchingQuery(String collection_belong_to, Map<String, Object> doc){
 
-        return getMatchingResults(doc, null);
+        return getMatchingQuery(collection_belong_to,doc, null);
     }
 
+    /*
+    This is a example function to do a matching query
+     */
+    public static void  doQuery(Query q){
+        final ArrayList<Map<String,Object>> results  = new ArrayList<>();
+        q.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    Log.d("Status", "doing a query");
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d("Status", document.getId() + " => " + document.getData());
 
+                        Map<String, Object> doc = document.getData();
+//                        list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
+                        results.add(doc);
+                    }
 
+                    // limit the results to to filed by hand
 
-
-
+                } else {
+                    Log.d("Error", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+    }
 
 }

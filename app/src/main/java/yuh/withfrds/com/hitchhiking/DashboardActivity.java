@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -53,13 +54,7 @@ public class DashboardActivity extends BaseActivity {
 
         lv = findViewById(R.id.dashboard_list);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("Satatus", "item clicked");
-            }
-        });
+        initList();
 
     }
 
@@ -70,8 +65,20 @@ public class DashboardActivity extends BaseActivity {
         final ArrayList<String> list = new ArrayList<String>();
         final ArrayList<Map<String,Object>> itemDataList = new ArrayList<Map<String,Object>>();
 
-//        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("Satatus", "item clicked");
+
+                Toast.makeText(DashboardActivity.this,  ""+itemDataList.get(i).get("to"), Toast.LENGTH_SHORT).show();
+
+                // the wat to query matching results
+                OurStore.doQuery(OurStore.getMatchingQuery("Offers", itemDataList.get(i)));
+
+            }
+        });
 
         final SimpleAdapter adapter = new SimpleAdapter(this,
                 itemDataList,
@@ -159,7 +166,7 @@ public class DashboardActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
 
-        initList();
+
 
     }
 

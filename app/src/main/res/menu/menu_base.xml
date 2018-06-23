@@ -5,10 +5,6 @@
         android:icon="@android:drawable/ic_menu_manage"
         android:title="@string/title_activity_dashboard"/>
     <item
-        android:id="@+id/action_map"
-        android:icon="@android:drawable/ic_menu_compass"
-        android:title="@string/title_activity_maps"/>
-    <item
         android:id="@+id/action_post_offer"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/title_activity_offer"/>
