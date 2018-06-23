@@ -27,6 +27,7 @@
     <string name="map_fr">Departure</string>
     <string name="map_to">Destination</string>
     <string name="map_back">Return</string>
+    <string name="map_via">Via</string>
 
     <!-- Info page -->
     <string name="info_firname">First Name</string>

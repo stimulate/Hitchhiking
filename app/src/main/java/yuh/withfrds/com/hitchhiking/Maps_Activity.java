@@ -58,6 +58,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 
 public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -72,6 +76,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
     private String jsonResponse;
     private String v1,v2;
     private String l1,l2;
+    private HashMap<String, String> path;
     LocationManager locationManager;
     double longitude, latitude;
     private GoogleApiClient googleApiClient;
@@ -98,6 +103,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         Button btn = findViewById(R.id.btn);
         Button btn1 = findViewById(R.id.btn1);
         Button btn2 = findViewById(R.id.btn2);
+        Button btn3 = findViewById(R.id.btn3);
         final FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,8 +156,32 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().postSticky(new Msg(v1,v2,l1,l2)); ;
+                EventBus.getDefault().postSticky(new Msg(v1,v2,l1,l2,path)); ;
                    finish();
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try {
+                    Task<Location> location = client.getLastLocation();
+
+                    location.addOnCompleteListener(new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Location> task) {
+
+                            if(Lat != 0.0){
+                                makeJsonObjectRequest(Lat, Long);
+                                String temp = Lat+ "," + Long;
+                                path.put(jsonResponse, temp);
+                            }
+                            moveMap();
+                            System.err.println(task.getResult().getLatitude());
+                        }
+                    });
+                } catch (SecurityException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
@@ -296,7 +326,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                 try {
                     // Parsing json object response
                     // response will be a json object
-                    jsonResponse = response.getString("address");
+                    jsonResponse = response.getString("no") + " " + response.getString("street");
 
                     Toast.makeText(Maps_Activity.this, jsonResponse, Toast.LENGTH_LONG).show();
 
