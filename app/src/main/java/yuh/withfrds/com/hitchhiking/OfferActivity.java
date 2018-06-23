@@ -57,6 +57,7 @@ public class OfferActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer);
+        EventBus.getDefault().register(this);
 
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -85,7 +86,6 @@ public class OfferActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
 
         textStart.setText(depAddress);
         textDest.setText(destAddress);
@@ -194,8 +194,8 @@ public class OfferActivity extends BaseActivity {
 //    }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 }
