@@ -57,8 +57,9 @@ public class OfferActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer);
-
-
+        initTexts();
+        initFirestore();
+        EventBus.getDefault().register(this);
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -67,9 +68,6 @@ public class OfferActivity extends BaseActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        initTexts();
-        initFirestore();
-
 
         Button offerButton = findViewById(R.id.buttonPost);
         offerButton.setOnClickListener(new View.OnClickListener() {
@@ -85,11 +83,9 @@ public class OfferActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
 
-        textStart.setText(depAddress);
-        textDest.setText(destAddress);
-
+//        textStart.setText(depAddress);
+//        textDest.setText(destAddress);
     }
 
     private void initFirestore(){
@@ -101,8 +97,6 @@ public class OfferActivity extends BaseActivity {
         // please remember connect firebase firstly
         // get instance
         db = FirebaseFirestore.getInstance();
-
-
     }
 
     private void initTexts(){
@@ -113,7 +107,6 @@ public class OfferActivity extends BaseActivity {
         textTimeStart = (EditText) findViewById(R.id.offerTimeDeparture);
         textTimeEnd = findViewById(R.id.offerTimeRangeTo);
         textSeats = findViewById(R.id.textSeats);
-
 
     }
 
@@ -172,12 +165,11 @@ public class OfferActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.ASYNC, sticky = true)
     public void getAddresses(Msg mMsg) {
-//         textStart.setText(mMsg.getDep());
-         mMsg.getDep();
-//         textDest.setText(mMsg.getDest());
-        depAddress =  mMsg.getDep();
-
-        destAddress= mMsg.getDest();
+         textStart.setText(mMsg.getDep());
+         textDest.setText(mMsg.getDest());
+         textPass.setText(mMsg.getPath().get(mMsg.getPath().size() -1).getS1());
+//        depAddress =  mMsg.getDep();
+//        destAddress= mMsg.getDest();
         depLoc = mMsg.getDepLocation();
         destLoc = mMsg.getDestLocation();
     }
@@ -194,8 +186,8 @@ public class OfferActivity extends BaseActivity {
 //    }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 }
