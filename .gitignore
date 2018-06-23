@@ -69,3 +69,5 @@ app/build.gradle
 
 
 .idea/misc.xml
+
+./app/src/debug/res/values/google_maps_api.xml
