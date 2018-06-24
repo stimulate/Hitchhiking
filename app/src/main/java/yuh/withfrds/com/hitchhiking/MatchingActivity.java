@@ -1,10 +1,12 @@
 package yuh.withfrds.com.hitchhiking;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +44,7 @@ public class MatchingActivity extends BaseActivity {
     private void initList(){
 
         final ArrayList<Map<String,Object>> resultsList = new ArrayList<Map<String,Object>>();
+
         final SimpleAdapter adapter = new SimpleAdapter(this,
                 resultsList,
                 R.layout.item,
@@ -85,7 +88,10 @@ public class MatchingActivity extends BaseActivity {
                                             adapter.notifyDataSetChanged();
                                         }
 
-
+                                        if (resultsList.size() == 0){
+                                            Toast.makeText(MatchingActivity.this, "No matching", Toast.LENGTH_LONG).show();
+                                            gobackToDashboard();
+                                        }
                                     }
 
                                     // limit the results to to filed by hand
@@ -107,11 +113,10 @@ public class MatchingActivity extends BaseActivity {
         });
 
 
-
-
-
-
-
-
+    }
+    private void gobackToDashboard(){
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
