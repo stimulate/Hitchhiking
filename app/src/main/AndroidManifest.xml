@@ -44,8 +44,8 @@
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard" />
         <activity
-            android:name=".SearchActivity"
-            android:label="@string/title_activity_search" />
+            android:name=".MatchingActivity"
+            android:label="@string/title_activity_matching" />
         <activity
             android:name=".Maps_Activity"
             android:label="@string/title_activity_maps"/>
