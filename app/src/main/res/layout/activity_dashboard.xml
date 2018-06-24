@@ -12,11 +12,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DashboardActivity">
 
-    <TextView
-        android:id="@+id/textViewFilter"
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:hint="Address filter" />
 
     <ListView
         android:id="@+id/dashboard_list"

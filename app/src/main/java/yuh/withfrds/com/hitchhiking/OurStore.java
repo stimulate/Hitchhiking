@@ -62,6 +62,10 @@ public class OurStore {
 
     private static GeoPoint getGeoPoint(Location location){
 
+        if (location == null){
+            return null;
+        }
+
         return new GeoPoint(location.getLatitude(), location.getLongitude());
     }
 
@@ -171,9 +175,7 @@ public class OurStore {
 
 
     /*
-
     get fields and id of user
-
      */
     public static String getUserId(){
 
@@ -238,7 +240,12 @@ public class OurStore {
 
 
         GeoPoint depPoint= getGeoPoint(depLocation);
+
+
+
+
         GeoPoint destPoint = getGeoPoint(destLocation);
+
 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -286,7 +293,7 @@ public class OurStore {
 
 
 
-        if (collection_belong_to == "Offers"){
+        if (collection_belong_to.equals( "Offers")){
             collection_name = "Requests";
         }
         CollectionReference ref = getDB().collection(collection_name);
@@ -302,18 +309,28 @@ public class OurStore {
 
         GeoPoint current = (GeoPoint) doc.get("location_current");
 
-
-        GeoPoint swPoint = getSWPoint(dep);
-        GeoPoint nePoint = getNEPoint(dest);
+        if (dep != null  && dest != null){
 
 
-        // the limitation of store query is than the range quesy can be only used in one filed
-        // so we have to limit the result after query by hand
-        // in location to field
-        // https://firebase.google.com/docs/firestore/query-data/queries
 
-        q=ref.whereLessThanOrEqualTo("location_from", nePoint).
-                whereGreaterThanOrEqualTo("location_from", swPoint);
+            GeoPoint swPoint = getSWPoint(dep);
+            GeoPoint nePoint = getNEPoint(dest);
+
+
+            // the limitation of store query is than the range quesy can be only used in one filed
+            // so we have to limit the result after query by hand
+            // in location to field
+            // https://firebase.google.com/docs/firestore/query-data/queries
+
+            q=ref.whereLessThanOrEqualTo("location_from", nePoint).
+                    whereGreaterThanOrEqualTo("location_from", swPoint);
+
+        }else{
+            // user might not upload their locations
+            q= ref.whereEqualTo("from", doc.get("from"))
+                    .whereEqualTo("to", doc.get("to"));
+
+        }
 
         return q;
 

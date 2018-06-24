@@ -20,7 +20,7 @@
     <string name="title_activity_offer">Offer</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_request">Request</string>
-    <string name="title_activity_search">Search</string>Contact Us>
+    <string name="title_activity_matching">Matching Results</string>
     <string name="title_activity_maps"></string>
 
 
@@ -68,7 +68,7 @@
 
     <string name="from">From</string>
     <string name="destination">To</string>
-    <string name="pass">Split with ,</string>
+    <string name="pass">Which places I pass, Split with ,</string>
     <string name="seats">Seats Available</string>
     <string name="time_start">Time Starts</string>
     <string name="time_end">Time Ends</string>
