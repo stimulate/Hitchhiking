@@ -71,10 +71,6 @@ public class DashboardActivity extends BaseActivity {
         final ArrayList<Map<String,Object>> fullList = new ArrayList<Map<String,Object>>();
 
 
-
-
-
-
         final SimpleAdapter adapter = new SimpleAdapter(this,
                 fullList,
                 R.layout.item,
@@ -111,8 +107,8 @@ public class DashboardActivity extends BaseActivity {
                         //list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
 
 
-
-                        offersList.add(doc);
+                        doc.put("collection_name", "Offers");
+                        doc.put("doc_id", document.getId());
 
                         if (doc.get("matching_uid")!=null  ){
                             doc.put("status", R.drawable.check1);
@@ -120,6 +116,7 @@ public class DashboardActivity extends BaseActivity {
                             doc.put("status", R.drawable.check10);
                         }
 
+                        offersList.add(doc);
 //                        Log.d("Status", "onStart: "+itemDataList.get(0));
 
 //                        adapter.notifyDataSetChanged();
@@ -224,7 +221,9 @@ public class DashboardActivity extends BaseActivity {
                         //list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
 
 
-                        requestsList.add(doc);
+                        doc.put("collection_name", "Requests");
+
+                        doc.put("doc_id", document.getId());
 
                         if (doc.get("matching_uid")!=null  ){
                             doc.put("status", R.drawable.check2);
@@ -233,7 +232,9 @@ public class DashboardActivity extends BaseActivity {
                         }
 
 //                        Log.d("Status", "onStart: "+itemDataList.get(0));
-                        adapter.notifyDataSetChanged();
+
+                        requestsList.add(doc);
+
 
 
                     }
@@ -256,8 +257,15 @@ public class DashboardActivity extends BaseActivity {
 
                 Toast.makeText(DashboardActivity.this,  ""+fullList.get(i).get("to"), Toast.LENGTH_SHORT).show();
 
+                Intent intent = new Intent(DashboardActivity.this, MatchingActivity.class);
+                intent.putExtra("doc_id", (String)fullList.get(i).get("doc_id"));
+                intent.putExtra("collection_name",(String)fullList.get(i).get("collection_name"));
+
+                startActivity(intent);
+//                finish();
+
                 // the wat to query matching results
-                OurStore.doQuery(OurStore.getMatchingQuery("Offers", offersList.get(i)));
+//                OurStore.doQuery(OurStore.getMatchingQuery("Offers", offersList.get(i)));
 
             }
         });
