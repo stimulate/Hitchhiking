@@ -175,9 +175,7 @@ public class OurStore {
 
 
     /*
-
     get fields and id of user
-
      */
     public static String getUserId(){
 
@@ -311,7 +309,7 @@ public class OurStore {
 
         GeoPoint current = (GeoPoint) doc.get("location_current");
 
-        if (dep == null  || dest == null){
+        if (dep != null  && dest != null){
 
 
 
