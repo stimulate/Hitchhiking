@@ -19,10 +19,6 @@
         android:id="@+id/action_map"
         android:title="@string/title_activity_maps"
         />
-    <item
-        android:id="@+id/action_matching"
-        android:title=""
-        android:visible="false"
-        />
+
 
 </menu>
