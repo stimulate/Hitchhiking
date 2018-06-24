@@ -95,14 +95,16 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
     //private String URL_Direction = "https://maps.googleapis.com/maps/api/directions/json?origin=";
     private ProgressDialog pDialog;
     private String jsonResponse;
-    private String jsonResponse_dir;
-    private String v1,v2;
-    private String l1,l2;
+    // private String jsonResponse_dir;
+    private String v1, v2;
+    private String l1, l2;
+    private LatLng start, waypoint, end;
     LocationManager locationManager;
     double longitude, latitude;
     private GoogleApiClient googleApiClient;
     int zoomLevel = 12;
     ArrayList path = new ArrayList<Tuple>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +127,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         Button btn1 = findViewById(R.id.btn1);
         Button btn2 = findViewById(R.id.btn2);
         Button btn3 = findViewById(R.id.btn3);
+        Button btn4 = findViewById(R.id.btn4);
         final FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,15 +139,12 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                         @Override
                         public void onComplete(@NonNull Task<Location> task) {
 
-                            if(Lat != 0.0){
+                            if (Lat != 0.0) {
                                 makeJsonObjectRequest(Lat, Long);
                                 v1 = jsonResponse;
                                 l1 = Lat + "," + Long;
+                                start = new LatLng(Lat, Long);
                             }
-                           LatLng start = new LatLng(-36.885189, 174.715024);
-                           LatLng waypoint= new LatLng(-36.891367, 174.712363);
-                           LatLng end = new LatLng(-36.888051, 174.709184);
-                            getRoute(start, waypoint, end);
                             //moveMap();
                             System.err.println(task.getResult().getLatitude());
                         }
@@ -164,10 +164,11 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                         @Override
                         public void onComplete(@NonNull Task<Location> task) {
 
-                            if(Lat != 0.0){
+                            if (Lat != 0.0) {
                                 makeJsonObjectRequest(Lat, Long);
                                 v2 = jsonResponse;
                                 l2 = Lat + "," + Long;
+                                waypoint = new LatLng(Lat, Long);
                             }
                             //moveMap();
                             System.err.println(task.getResult().getLatitude());
@@ -181,11 +182,21 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().post(new Msg(v1,v2,l1,l2,path)); ;
-                   finish();
+                EventBus.getDefault().post(new Msg(v1, v2, l1, l2, path));
+                ;
+                finish();
             }
         });
-        btn3.setOnClickListener(new View.OnClickListener(){
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(start !=null && end !=null){
+                    getRoute(start, end);}
+                if(start !=null && end !=null && waypoint != null)
+                {getRoute(start, waypoint, end);}
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -195,10 +206,11 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                         @Override
                         public void onComplete(@NonNull Task<Location> task) {
 
-                            if(Lat != 0.0){
+                            if (Lat != 0.0) {
                                 makeJsonObjectRequest(Lat, Long);
-                                String temp = Lat+ "," + Long;
+                                String temp = Lat + "," + Long;
                                 path.add(new Tuple(jsonResponse, temp));
+                                end = new LatLng(Lat, Long);
                             }
                             //moveMap();
                             System.err.println(task.getResult().getLatitude());
@@ -209,6 +221,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                 }
             }
         });
+
     }
 
     /**
@@ -232,12 +245,13 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
             return;
         }
         googleMap.setMyLocationEnabled(true);
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(Unitec));
-//        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+        //        googleMap.moveCamera(CameraUpdateFactory.newLatLng(Unitec));
+        //        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
         googleMap.setOnMarkerDragListener(this);
         googleMap.setOnMapLongClickListener(this);
         mMap = googleMap;
     }
+
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -251,7 +265,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED
                         && (ActivityCompat.checkSelfPermission(Maps_Activity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                         || ActivityCompat.checkSelfPermission(Maps_Activity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
-                    locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER,1000*60,2, (LocationListener) this);
+                    locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 1000 * 60, 2, (LocationListener) this);
 
                     Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
                 }
@@ -287,7 +301,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
          * move the camera with animation
          */
         LatLng latLng = new LatLng(latitude, longitude);
-        Bitmap markerBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.location);
+        Bitmap markerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.location);
 
         mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(markerBitmap))
                 .position(latLng)
@@ -302,7 +316,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
 
     @Override
     public void onClick(View view) {
-        Log.v(TAG,"view click event");
+        Log.v(TAG, "view click event");
     }
 
     @Override
@@ -323,76 +337,95 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
     @Override
     public void onMapLongClick(LatLng latLng) {
         mMap.clear();
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Choose this position").draggable(true));
-            Lat = latLng.latitude;
-            Long = latLng.longitude;
-            makeJsonObjectRequest(Lat,Long);
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Choose this position").draggable(true));
+        Lat = latLng.latitude;
+        Long = latLng.longitude;
+        makeJsonObjectRequest(Lat, Long);
     }
 
-//    private void makeJsonDirectionRequest(String a, String b) {
-//
-//        showpDialog();
-//        String mUrl = URL_Direction + a + "&destination=" + b + "&sensor=false&mode=driving";
-//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
-//                mUrl, null, new Response.Listener<JSONObject>() {
-//
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                Log.d(TAG, response.toString());
-//
-//                try {
-//                    // Parsing json object response
-//                    // response will be a json object
-//                    jsonResponse_dir = response.getString("polyline");
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(getApplicationContext(),
-//                            "Error: " + e.getMessage(),
-//                            Toast.LENGTH_LONG).show();
-//                }
-//                hidepDialog();
-//            }
-//        }, new Response.ErrorListener() {
-//
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                Toast.makeText(getApplicationContext(),
-//                        error.getMessage(), Toast.LENGTH_SHORT).show();
-//                // hide the progress dialog
-//                hidepDialog();
-//            }
-//        });
-//
-//        // Adding request to request queue
-//        AppController.getInstance().addToRequestQueue(jsonObjReq);
-//    }
-    private void getRoute(LatLng start, LatLng waypoint, LatLng end){
-        Bitmap marker_start = BitmapFactory.decodeResource(getResources(),R.drawable.start);
-        Bitmap marker_waypoint = BitmapFactory.decodeResource(getResources(),R.drawable.waypoint);
-        Bitmap marker_end = BitmapFactory.decodeResource(getResources(),R.drawable.destination);
-    mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_start))
-            .position(start)
-            .draggable(true)
-            .title("Origin"));
-    mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_waypoint))
-                .position(waypoint)
+    //    private void makeJsonDirectionRequest(String a, String b) {
+    //
+    //        showpDialog();
+    //        String mUrl = URL_Direction + a + "&destination=" + b + "&sensor=false&mode=driving";
+    //        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
+    //                mUrl, null, new Response.Listener<JSONObject>() {
+    //
+    //            @Override
+    //            public void onResponse(JSONObject response) {
+    //                Log.d(TAG, response.toString());
+    //
+    //                try {
+    //                    // Parsing json object response
+    //                    // response will be a json object
+    //                    jsonResponse_dir = response.getString("polyline");
+    //
+    //                } catch (JSONException e) {
+    //                    e.printStackTrace();
+    //                    Toast.makeText(getApplicationContext(),
+    //                            "Error: " + e.getMessage(),
+    //                            Toast.LENGTH_LONG).show();
+    //                }
+    //                hidepDialog();
+    //            }
+    //        }, new Response.ErrorListener() {
+    //
+    //            @Override
+    //            public void onErrorResponse(VolleyError error) {
+    //                VolleyLog.d(TAG, "Error: " + error.getMessage());
+    //                Toast.makeText(getApplicationContext(),
+    //                        error.getMessage(), Toast.LENGTH_SHORT).show();
+    //                // hide the progress dialog
+    //                hidepDialog();
+    //            }
+    //        });
+    //
+    //        // Adding request to request queue
+    //        AppController.getInstance().addToRequestQueue(jsonObjReq);
+    //    }
+    private void getRoute(LatLng start, LatLng waypoint, LatLng end) {
+        Bitmap marker_start = BitmapFactory.decodeResource(getResources(), R.drawable.start);
+        Bitmap marker_end = BitmapFactory.decodeResource(getResources(), R.drawable.destination);
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_start))
+                .position(start)
                 .draggable(true)
-                .title("Waypoint"));
-    mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_end))
+                .title("Origin"));
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_end))
                 .position(end)
                 .draggable(true)
                 .title("Destination"));
-    Routing routing = new Routing.Builder()
-            .travelMode(Routing.TravelMode.DRIVING)
-            .withListener(this)
-            .waypoints(start, waypoint, end)
-            .build();
+            Bitmap marker_waypoint = BitmapFactory.decodeResource(getResources(), R.drawable.waypoint);
+            mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_waypoint))
+                    .position(waypoint)
+                    .draggable(true)
+                    .title("Waypoint"));
+            Routing routing = new Routing.Builder()
+                    .travelMode(Routing.TravelMode.DRIVING)
+                    .withListener(this)
+                    .waypoints(start, waypoint, end)
+                    .optimize(true)
+                    .build();
+            routing.execute();
+    }
+    private void getRoute(LatLng start, LatLng end) {
+        Bitmap marker_start = BitmapFactory.decodeResource(getResources(), R.drawable.start);
+        Bitmap marker_end = BitmapFactory.decodeResource(getResources(), R.drawable.destination);
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_start))
+                .position(start)
+                .draggable(true)
+                .title("Origin"));
+
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_end))
+                .position(end)
+                .draggable(true)
+                .title("Destination"));
+
+        Routing routing = new Routing.Builder()
+                .travelMode(Routing.TravelMode.DRIVING)
+                .withListener(this)
+                .waypoints(start,end)
+                .build();
         routing.execute();
     }
-
-
     @Override
     public void onRoutingCancelled() {
 
