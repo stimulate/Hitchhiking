@@ -213,7 +213,7 @@ public class InfoActivity extends BaseActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.w("Fail", "Error writing document", e);
+                                Toast.makeText(InfoActivity.this,"Failed! Please write again",Toast.LENGTH_LONG).show();
                             }
                         });
                     }

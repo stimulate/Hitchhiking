@@ -14,11 +14,9 @@
         android:icon="@android:drawable/ic_menu_help"
         android:title="@string/title_activity_request"/>
 
-
     <item
         android:id="@+id/action_map"
-        android:title="@string/title_activity_maps"
-        />
+        android:title="@string/title_activity_maps"/>
 
 
 </menu>
