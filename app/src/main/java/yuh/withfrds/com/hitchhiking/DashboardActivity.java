@@ -117,7 +117,7 @@ public class DashboardActivity extends BaseActivity {
                         if (doc.get("matching_uid")!=null  ){
                             doc.put("status", R.drawable.check1);
                         }else{
-                            doc.put("status", R.drawable.item_default);
+                            doc.put("status", R.drawable.check10);
                         }
 
 //                        Log.d("Status", "onStart: "+itemDataList.get(0));
@@ -227,9 +227,9 @@ public class DashboardActivity extends BaseActivity {
                         requestsList.add(doc);
 
                         if (doc.get("matching_uid")!=null  ){
-                            doc.put("status", R.drawable.check1);
+                            doc.put("status", R.drawable.check2);
                         }else{
-                            doc.put("status", R.drawable.item_default);
+                            doc.put("status", R.drawable.check20);
                         }
 
 //                        Log.d("Status", "onStart: "+itemDataList.get(0));
