@@ -92,10 +92,10 @@ public class DashboardActivity extends BaseActivity {
 
         CollectionReference offersRef = db.collection("Offers");
 
-        Query q = offersRef.whereEqualTo("uid", OurStore.getUserId());
+        Query q_on_offers = offersRef.whereEqualTo("uid", OurStore.getUserId());
 
 
-        q.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        q_on_offers.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -111,7 +111,43 @@ public class DashboardActivity extends BaseActivity {
                             doc.put("status", R.drawable.check1);
 
                         }else{
+                            doc.put("status", R.drawable.item_default);
+                        }
+
+                        Log.d("Status", "onStart: "+itemDataList.get(0));
+
+                        adapter.notifyDataSetChanged();
+
+                    }
+
+                } else {
+                    Log.d("Error", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+        CollectionReference requestssRef = db.collection("Requests");
+
+        Query q_on_requests = requestssRef.whereEqualTo("uid", OurStore.getUserId());
+
+
+        q_on_requests.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d("Satatus", document.getId() + " => " + document.getData());
+
+                        Map<String, Object> doc = document.getData();
+//                        list.add("From: " + doc.get("from") +" To: " + doc.get("to") +" Pass: " +doc.get("pass"));
+                        itemDataList.add(doc);
+
+                        if (doc.get("matching_uid")!=null  ){
+
                             doc.put("status", R.drawable.check1);
+
+                        }else{
+                            doc.put("status", R.drawable.item_default);
                         }
 
                         Log.d("Status", "onStart: "+itemDataList.get(0));
