@@ -293,7 +293,7 @@ public class OurStore {
 
 
 
-        if (collection_belong_to == "Offers"){
+        if (collection_belong_to.equals( "Offers")){
             collection_name = "Requests";
         }
         CollectionReference ref = getDB().collection(collection_name);
