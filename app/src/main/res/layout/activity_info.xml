@@ -181,12 +181,36 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/info_submit"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:text="@string/info_submit" />
+        <Button
+            android:id="@+id/info_choose"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:text="@string/info_choose" />
+
+        <Button
+            android:id="@+id/info_upload"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:text="@string/info_upload" />
 
     </LinearLayout>
 
+
+    <Button
+        android:id="@+id/info_submit"
+        android:layout_width="124dp"
+        android:layout_height="50dp"
+        android:text="@string/info_submit" />
+
+    <ImageView
+        android:id="@+id/image_upload"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_report_image" />
+
+    </LinearLayout>

@@ -48,6 +48,8 @@
     <string name="info_hiker">Hiker</string>
     <string name="info_plate">Plate Number</string>
     <string name="info_profile">Profile</string>
+    <string name="info_choose">Choose Image</string>
+    <string name="info_upload">Upload</string>
     <string name="info_submit">Save</string>
     <string-array name="age_group">
         <item>below 20</item>
