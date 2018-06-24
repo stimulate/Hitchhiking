@@ -66,7 +66,7 @@
 
     <string name="from">From</string>
     <string name="destination">To</string>
-    <string name="pass">Split with ,</string>
+    <string name="pass">Which places I pass, Split with ,</string>
     <string name="seats">Seats Available</string>
     <string name="time_start">Time Starts</string>
     <string name="time_end">Time Ends</string>
