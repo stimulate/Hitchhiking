@@ -87,7 +87,7 @@ public class InfoActivity extends BaseActivity {
         mOccupation = findViewById(R.id.info_job);
         mAddress = findViewById(R.id.info_address);
         mCity = findViewById(R.id.info_city);
-        mState = findViewById(R.id.info_city);
+        mState = findViewById(R.id.info_state);
         mPhone = findViewById(R.id.info_no);
         mPlate = findViewById(R.id.info_plate);
         mradiogrp = findViewById(R.id.radioGroup);
@@ -170,7 +170,9 @@ public class InfoActivity extends BaseActivity {
                         mChoose.setVisibility(View.INVISIBLE);
                         mSub.setVisibility(View.INVISIBLE);
                         if(document.get("avatar") !=null){
-                            mImg.setImageURI(Uri.parse(document.get("avatar").toString()));}
+                            if(mStorageRef.child("images").child(userId) !=null){
+                           mImg.setImageURI(Uri.parse(mStorageRef.child("images").child(userId).getDownloadUrl().toString()));}
+                        }
                     } else {
                     }
                 } else {
@@ -258,7 +260,8 @@ public class InfoActivity extends BaseActivity {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading....");
             progressDialog.show();
-            StorageReference ref = mStorageRef.child("images/" + UUID.randomUUID().toString());
+            final String userId = FirebaseAuth. getInstance().getCurrentUser().getUid();
+            StorageReference ref = mStorageRef.child("images/" + userId);
             ref.putFile(filepath)
                     .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override

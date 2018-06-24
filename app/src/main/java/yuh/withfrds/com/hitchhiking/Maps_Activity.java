@@ -190,10 +190,10 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(start !=null && end !=null){
-                    getRoute(start, end);}
                 if(start !=null && end !=null && waypoint != null)
-                {getRoute(start, waypoint, end);}
+                {getRoute(start, waypoint);
+                getRoute(waypoint, end);
+                }
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
