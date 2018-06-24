@@ -45,6 +45,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.github.jd-alexander:library:1.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-storage:16.0.1'

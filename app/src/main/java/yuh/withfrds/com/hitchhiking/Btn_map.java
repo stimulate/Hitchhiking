@@ -76,11 +76,11 @@ public class Btn_map extends Fragment {
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(mListener!= null)
-                {BitmapDescriptor itemBitmap = BitmapDescriptorFactory.fromResource(R.drawable.unitec);
-                            MarkerOptions itemMarker = new MarkerOptions()
-                                   .position(new LatLng(-36.881305, 174.706192))
-                                    .icon(itemBitmap);}
+//                if(mListener!= null)
+//                {BitmapDescriptor itemBitmap = BitmapDescriptorFactory.fromResource(R.drawable.unitec);
+//                            MarkerOptions itemMarker = new MarkerOptions()
+//                                   .position(new LatLng(-36.881305, 174.706192))
+//                                    .icon(itemBitmap);}
             }
         });
         // Inflate the layout for this fragment

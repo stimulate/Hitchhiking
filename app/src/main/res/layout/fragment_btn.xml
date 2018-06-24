@@ -16,18 +16,18 @@
             android:id="@+id/btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:gravity="left"
-            android:text="@string/map_fr" />
+            android:text="@string/map_fr"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btn1"
-            android:layout_width="84dp"
-            android:layout_height="43dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:gravity="center_horizontal"
-            android:text="@string/map_to" />
+            android:text="@string/map_to"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btn2"
@@ -37,6 +37,7 @@
             android:layout_marginStart="8dp"
             android:gravity="right"
             android:text="@string/map_back"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn1"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,8 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/map_via"
-            tools:layout_editor_absoluteX="241dp"
-            tools:layout_editor_absoluteY="76dp" />
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn2"/>
 
     </LinearLayout>
 

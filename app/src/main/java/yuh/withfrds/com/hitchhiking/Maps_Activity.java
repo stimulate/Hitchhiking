@@ -3,17 +3,23 @@ package yuh.withfrds.com.hitchhiking;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.LauncherActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -35,6 +41,11 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpResponse;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.directions.route.AbstractRouting;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -45,9 +56,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Cap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -74,12 +87,15 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         GoogleMap.OnMarkerDragListener,
         GoogleMap.OnMapLongClickListener,
         GoogleMap.OnMarkerClickListener,
+        RoutingListener,
         View.OnClickListener {
     private static final String TAG = Maps_Activity.class.getSimpleName();
     private GoogleMap mMap;
     private String URL_JSON = "https://datafilter1.mybluemix.net/address?lat=";
+    //private String URL_Direction = "https://maps.googleapis.com/maps/api/directions/json?origin=";
     private ProgressDialog pDialog;
     private String jsonResponse;
+    private String jsonResponse_dir;
     private String v1,v2;
     private String l1,l2;
     LocationManager locationManager;
@@ -125,7 +141,11 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                                 v1 = jsonResponse;
                                 l1 = Lat + "," + Long;
                             }
-                            moveMap();
+                           LatLng start = new LatLng(-36.885189, 174.715024);
+                           LatLng waypoint= new LatLng(-36.891367, 174.712363);
+                           LatLng end = new LatLng(-36.888051, 174.709184);
+                            getRoute(start, waypoint, end);
+                            //moveMap();
                             System.err.println(task.getResult().getLatitude());
                         }
                     });
@@ -149,7 +169,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                                 v2 = jsonResponse;
                                 l2 = Lat + "," + Long;
                             }
-                            moveMap();
+                            //moveMap();
                             System.err.println(task.getResult().getLatitude());
                         }
                     });
@@ -180,7 +200,7 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
                                 String temp = Lat+ "," + Long;
                                 path.add(new Tuple(jsonResponse, temp));
                             }
-                            moveMap();
+                            //moveMap();
                             System.err.println(task.getResult().getLatitude());
                         }
                     });
@@ -308,6 +328,85 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
             Long = latLng.longitude;
             makeJsonObjectRequest(Lat,Long);
     }
+
+//    private void makeJsonDirectionRequest(String a, String b) {
+//
+//        showpDialog();
+//        String mUrl = URL_Direction + a + "&destination=" + b + "&sensor=false&mode=driving";
+//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
+//                mUrl, null, new Response.Listener<JSONObject>() {
+//
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                Log.d(TAG, response.toString());
+//
+//                try {
+//                    // Parsing json object response
+//                    // response will be a json object
+//                    jsonResponse_dir = response.getString("polyline");
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(getApplicationContext(),
+//                            "Error: " + e.getMessage(),
+//                            Toast.LENGTH_LONG).show();
+//                }
+//                hidepDialog();
+//            }
+//        }, new Response.ErrorListener() {
+//
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                VolleyLog.d(TAG, "Error: " + error.getMessage());
+//                Toast.makeText(getApplicationContext(),
+//                        error.getMessage(), Toast.LENGTH_SHORT).show();
+//                // hide the progress dialog
+//                hidepDialog();
+//            }
+//        });
+//
+//        // Adding request to request queue
+//        AppController.getInstance().addToRequestQueue(jsonObjReq);
+//    }
+    private void getRoute(LatLng start, LatLng waypoint, LatLng end){
+        Bitmap marker_start = BitmapFactory.decodeResource(getResources(),R.drawable.start);
+        Bitmap marker_waypoint = BitmapFactory.decodeResource(getResources(),R.drawable.waypoint);
+        Bitmap marker_end = BitmapFactory.decodeResource(getResources(),R.drawable.destination);
+    mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_start))
+            .position(start)
+            .draggable(true)
+            .title("Origin"));
+    mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_waypoint))
+                .position(waypoint)
+                .draggable(true)
+                .title("Waypoint"));
+    mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(marker_end))
+                .position(end)
+                .draggable(true)
+                .title("Destination"));
+    Routing routing = new Routing.Builder()
+            .travelMode(Routing.TravelMode.DRIVING)
+            .withListener(this)
+            .waypoints(start, waypoint, end)
+            .build();
+        routing.execute();
+    }
+
+
+    @Override
+    public void onRoutingCancelled() {
+
+    }
+
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
     private void makeJsonObjectRequest(Double mlat, Double mlong) {
 
         showpDialog();
@@ -349,16 +448,6 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjReq);
     }
-    private void showpDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-
-    private void hidepDialog() {
-        if (pDialog.isShowing())
-            pDialog.dismiss();
-    }
-
     @Override
     public void onMarkerDragStart(Marker marker) {
         //Toast.makeText(Maps_Activity.this, "onMarkerDragStart", Toast.LENGTH_SHORT).show();
@@ -395,6 +484,21 @@ public class Maps_Activity extends BaseActivity implements OnMapReadyCallback, G
         return true;
     }
 
+    @Override
+    public void onRoutingFailure(RouteException e) {
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> arrayList, int i) {
+
+        mMap.addPolyline(arrayList.get(i).getPolyOptions().color(Color.RED));
+    }
 }
 
 
