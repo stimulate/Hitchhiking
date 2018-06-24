@@ -260,6 +260,7 @@ public class DashboardActivity extends BaseActivity {
                 Intent intent = new Intent(DashboardActivity.this, MatchingActivity.class);
                 intent.putExtra("doc_id", (String)fullList.get(i).get("doc_id"));
                 intent.putExtra("collection_name",(String)fullList.get(i).get("collection_name"));
+                intent.putExtra("uid", (String)fullList.get(i).get("uid"));
 
                 startActivity(intent);
 //                finish();
