@@ -1,6 +1,9 @@
 # Hitchhiking
 This is very basic hitchhiking sharing application.
 
+- [google play](https://play.google.com/store/apps/details?id=yuh.withfrds.com.hitchhiking)
+- [github repo](https://github.com/stimulate/Hitchhiking)
+
 
 ## technical stacks
 - firestore / firebase
@@ -32,6 +35,8 @@ This is very basic hitchhiking sharing application.
 this is an encapsulation class for interacting with fire store.
 
 there are some public functions for now
+- getDb
+- getUserId
 - postAnOffer
 - postAnRequest
 - setUserProfile (not yet)
