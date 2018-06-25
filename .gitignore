@@ -73,3 +73,10 @@ app/build.gradle
 app/src/debug/res/values/google_maps_api.xml
 app/release/*
 preview/*
+
+*.docx
+*.doc
+*.pptx
+*.ppt
+mobile_assignment3_hitchhiking/*
+preview/*
