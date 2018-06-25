@@ -167,7 +167,7 @@ public class InfoActivity extends BaseActivity {
                             mSub.setVisibility(View.INVISIBLE);
                             if(document.get("avatar") !=null){
                                 if(mStorageRef.child("images").child(userId) !=null){
-                                    mImg.setImageURI(Uri.parse(mStorageRef.child("images").child(userId).getDownloadUrl().toString();));}
+                                    mImg.setImageURI(Uri.parse(mStorageRef.child("images").child(userId).getDownloadUrl().toString()));
                                 }
                             }
                         }catch(Exception e) {
