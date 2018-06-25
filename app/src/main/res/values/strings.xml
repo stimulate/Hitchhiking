@@ -24,9 +24,9 @@
     <string name="title_activity_maps"></string>
 
 
-    <string name="map_fr">Origin</string>
+    <string name="map_fr">Depa</string>
     <string name="map_to">Dest</string>
-    <string name="map_back">Return</string>
+    <string name="map_back">Retu</string>
     <string name="map_via">Via</string>
     <string name="map_path">Path</string>
 
@@ -63,7 +63,7 @@
     <string name="action_settings">Settings</string>
     <string name="nav_drawer_opened">drawer opened</string>
     <string name="nav_drawer_closed">drawer closed</string>
-    <string name="title_activity_maps_">Map</string>
+    <string name="title_activity_maps_"></string>
 
 
     <string name="from">From</string>
