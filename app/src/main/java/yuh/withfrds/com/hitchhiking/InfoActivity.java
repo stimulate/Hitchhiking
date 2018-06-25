@@ -87,7 +87,7 @@ public class InfoActivity extends BaseActivity {
         mOccupation = findViewById(R.id.info_job);
         mAddress = findViewById(R.id.info_address);
         mCity = findViewById(R.id.info_city);
-        mState = findViewById(R.id.info_city);
+        mState = findViewById(R.id.info_state);
         mPhone = findViewById(R.id.info_no);
         mPlate = findViewById(R.id.info_plate);
         mradiogrp = findViewById(R.id.radioGroup);
@@ -165,14 +165,15 @@ public class InfoActivity extends BaseActivity {
                             mUpload.setVisibility(View.INVISIBLE);
                             mChoose.setVisibility(View.INVISIBLE);
                             mSub.setVisibility(View.INVISIBLE);
-                            if (document.get("avatar") != null) {
-                                mImg.setImageURI(Uri.parse(document.get("avatar").toString()));
+                            if(document.get("avatar") !=null){
+                                if(mStorageRef.child("images").child(userId) !=null){
+                                    mImg.setImageURI(Uri.parse(mStorageRef.child("images").child(userId).getDownloadUrl().toString();));}
+                                }
                             }
                         }catch(Exception e) {
                             Log.d("Error", "get failed with ", e);
                             Toast.makeText(InfoActivity.this, "Fields are null", Toast.LENGTH_LONG).show();
                         }
-
                     } else {
                     }
                 } else {
@@ -215,7 +216,7 @@ public class InfoActivity extends BaseActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.w("Fail", "Error writing document", e);
+                                Toast.makeText(InfoActivity.this,"Failed! Please write again",Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -260,7 +261,8 @@ public class InfoActivity extends BaseActivity {
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading....");
             progressDialog.show();
-            StorageReference ref = mStorageRef.child("images/" + UUID.randomUUID().toString());
+            final String userId = FirebaseAuth. getInstance().getCurrentUser().getUid();
+            StorageReference ref = mStorageRef.child("images/" + userId);
             ref.putFile(filepath)
                     .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override

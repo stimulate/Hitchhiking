@@ -52,14 +52,11 @@
             android:label="@string/title_activity_maps"/>
         <activity
             android:name=".InfoActivity"
-            android:label="@string/title_activity_settings"></activity>
-
+            android:label="@string/title_activity_settings"/>
 
         <activity
             android:name=".RequestActivity"
-            android:label="@string/title_activity_request"></activity>
-
-
+            android:label="@string/title_activity_request"/>
         <activity
             android:name=".OfferActivity"
             android:label="@string/title_activity_offer"
